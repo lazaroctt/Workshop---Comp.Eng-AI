@@ -4,12 +4,15 @@ import { BookOpen, Clock, Calendar, ArrowLeft, ArrowRight, Tag } from 'lucide-re
 import Revelar from '../components/Revelar.jsx';
 import { posts, acharPost, categoriasPost } from '../data/posts.js';
 
-/** Fundo da capa de cada artigo, escolhido pela cor definida no post. */
-const GRADIENTES = {
-  ciano: 'linear-gradient(135deg, #0e4f78, #22d3ee)',
-  ambar: 'linear-gradient(135deg, #8a5a12, #f5b642)',
-  verde: 'linear-gradient(135deg, #0d5c49, #34d3a6)',
-  roxo: 'linear-gradient(135deg, #3d2a86, #9b7cf6)',
+/**
+ * Cor do ícone de cada artigo. Serve só para diferenciar as categorias,
+ * sempre em tom fechado, sem preenchimento chapado nem degradê.
+ */
+const CORES = {
+  ciano: 'var(--azul-700)',
+  ambar: 'var(--ambar-500)',
+  verde: 'var(--verde-500)',
+  roxo: 'var(--roxo-500)',
 };
 
 /** Renderiza um bloco de conteúdo do artigo. */
@@ -54,11 +57,11 @@ function Artigo({ post, navegar }) {
         </button>
 
         <article className="artigo">
-          <div className="post-capa" style={{ background: GRADIENTES[post.cor], height: 180 }}>
-            <Icone size={54} />
+          <div className="post-capa" style={{ height: 120, color: CORES[post.cor] }}>
+            <Icone size={38} strokeWidth={1.4} />
           </div>
 
-          <span className="pill pill-ciano" style={{ marginBottom: '0.9rem' }}>
+          <span className="pill" style={{ marginBottom: '0.9rem' }}>
             <Tag size={12} /> {post.categoria}
           </span>
           <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)' }}>{post.titulo}</h1>
@@ -109,7 +112,7 @@ export default function Blog({ navegar, slug }) {
     <section className="secao">
       <div className="container">
         <Revelar className="cabecalho-secao">
-          <span className="olho"><BookOpen size={14} /> Blog do workshop</span>
+          <span className="olho">Blog do workshop</span>
           <h2>Textos curtos para ler antes, durante ou depois</h2>
           <p>
             Cada artigo cabe em poucos minutos e responde uma dúvida que costuma aparecer no
@@ -142,8 +145,8 @@ export default function Blog({ navegar, slug }) {
                   style={{ height: '100%', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}
                   onClick={() => navegar('blog', p.slug)}
                 >
-                  <div className="post-capa" style={{ background: GRADIENTES[p.cor] }}>
-                    <Icone size={40} />
+                  <div className="post-capa" style={{ color: CORES[p.cor] }}>
+                    <Icone size={30} strokeWidth={1.4} />
                   </div>
                   <span className="pill" style={{ alignSelf: 'flex-start', marginBottom: '0.7rem' }}>
                     {p.categoria}
@@ -162,7 +165,7 @@ export default function Blog({ navegar, slug }) {
                     }}
                   >
                     <span><Clock size={13} style={{ verticalAlign: '-2px' }} /> {p.leitura}</span>
-                    <span style={{ color: 'var(--destaque)', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--azul-700)', fontWeight: 600 }}>
                       Ler <ArrowRight size={14} style={{ verticalAlign: '-2px' }} />
                     </span>
                   </div>

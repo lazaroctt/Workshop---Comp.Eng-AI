@@ -1,10 +1,10 @@
 import {
-  Sparkles, ArrowRight, Download, Target, Users, Clock, Layers, Brain, Wrench,
-  GraduationCap, CircuitBoard, Bot, LineChart, ShieldCheck, Rocket, BookOpen,
+  ArrowRight, Download, Layers, Wrench, GraduationCap, CircuitBoard, Bot, LineChart,
+  ShieldCheck, Rocket,
 } from 'lucide-react';
 
 import Revelar from '../components/Revelar.jsx';
-import PainelSensores from '../components/PainelSensores.jsx';
+import FiguraFluxo from '../components/FiguraFluxo.jsx';
 import Acordeao from '../components/Acordeao.jsx';
 import Aviso from '../components/Aviso.jsx';
 import { datasets } from '../data/datasets.js';
@@ -108,11 +108,9 @@ export default function Sobre({ navegar }) {
       <section className="hero">
         <div className="container hero-grade">
           <div>
-            <span className="olho">
-              <Sparkles size={14} /> LACOP · Universidade Federal Fluminense
-            </span>
+            <span className="olho">LACOP · Universidade Federal Fluminense</span>
             <h1>
-              Dados de sensores viram <span>previsão</span> quando a IA entra no projeto
+              Dados de sensores viram <em>previsão</em> quando a IA entra no projeto
             </h1>
             <p className="hero-sub">
               Um workshop prático para quem monta circuitos e quer ir além do valor de corte
@@ -149,7 +147,7 @@ export default function Sobre({ navegar }) {
             </div>
           </div>
 
-          <PainelSensores />
+          <FiguraFluxo />
         </div>
       </section>
 
@@ -157,7 +155,7 @@ export default function Sobre({ navegar }) {
       <section className="secao">
         <div className="container">
           <Revelar className="cabecalho-secao centro">
-            <span className="olho"><Target size={14} /> A proposta</span>
+            <span className="olho">A proposta</span>
             <h2>Aprendizado de máquina aplicado ao que já está na bancada</h2>
             <p>
               A ideia central é simples: sinal de sensor é dado, e dado bem usado antecipa
@@ -172,7 +170,7 @@ export default function Sobre({ navegar }) {
               return (
                 <Revelar key={pilar.titulo} atraso={i * 90}>
                   <article className="cartao" style={{ height: '100%' }}>
-                    <span className="cartao-icone"><Icone size={24} /></span>
+                    <span className="cartao-icone"><Icone size={20} strokeWidth={1.6} /></span>
                     <h3>{pilar.titulo}</h3>
                     <p style={{ marginBottom: 0 }}>{pilar.texto}</p>
                   </article>
@@ -188,7 +186,7 @@ export default function Sobre({ navegar }) {
         <div className="container">
           <div className="grade grade-2" style={{ gap: '2.6rem', alignItems: 'start' }}>
             <Revelar>
-              <span className="olho"><Brain size={14} /> Objetivos</span>
+              <span className="olho">Objetivos</span>
               <h2>O que você leva no fim do dia</h2>
               <p>
                 Nenhum objetivo aqui depende de matemática avançada. A meta é destravar o uso de
@@ -205,7 +203,7 @@ export default function Sobre({ navegar }) {
             </Revelar>
 
             <Revelar atraso={120}>
-              <span className="olho"><Users size={14} /> Público</span>
+              <span className="olho">Público</span>
               <h2>Para quem foi pensado</h2>
               <div className="grade" style={{ gap: '0.9rem' }}>
                 <article className="cartao">
@@ -248,7 +246,7 @@ export default function Sobre({ navegar }) {
       <section className="secao">
         <div className="container">
           <Revelar className="cabecalho-secao centro">
-            <span className="olho"><Clock size={14} /> Formato</span>
+            <span className="olho">Formato</span>
             <h2>Um dia intenso, com opção de segundo encontro</h2>
             <p>
               O primeiro dia fecha um ciclo completo, da pergunta ao resultado apresentado. O
@@ -310,7 +308,7 @@ export default function Sobre({ navegar }) {
                         style={{
                           fontFamily: 'var(--fonte-mono)',
                           fontSize: '0.82rem',
-                          color: 'var(--ambar-500)',
+                          color: 'var(--texto-fraco)',
                           minWidth: '48px',
                           paddingTop: '0.15rem',
                         }}
@@ -341,7 +339,7 @@ export default function Sobre({ navegar }) {
         <div className="container">
           <div className="grade grade-2" style={{ gap: '2.6rem', alignItems: 'center' }}>
             <Revelar>
-              <span className="olho"><BookOpen size={14} /> Proposta pedagógica</span>
+              <span className="olho">Proposta pedagógica</span>
               <h2>Aprender fazendo, com resultado na tela</h2>
               <p>
                 A condução é curta na exposição e longa na prática. Cada bloco teórico dura poucos
@@ -371,9 +369,10 @@ export default function Sobre({ navegar }) {
                     <strong
                       style={{
                         fontFamily: 'var(--fonte-titulo)',
-                        fontSize: '1.6rem',
-                        color: 'var(--destaque)',
-                        minWidth: '62px',
+                        fontSize: '1.32rem',
+                        fontWeight: 600,
+                        color: 'var(--texto)',
+                        minWidth: '58px',
                       }}
                     >
                       {bloco.n}
@@ -411,14 +410,13 @@ export default function Sobre({ navegar }) {
               className="cartao"
               style={{
                 textAlign: 'center',
-                padding: 'clamp(2rem, 5vw, 3.4rem)',
-                background:
-                  'linear-gradient(135deg, var(--azul-800), var(--azul-950))',
-                borderColor: 'transparent',
+                padding: 'clamp(1.8rem, 5vw, 3rem)',
+                background: 'var(--fundo-alt)',
+                borderTop: '3px solid var(--azul-800)',
               }}
             >
-              <h2 style={{ color: '#fff' }}>Pronto para escolher sua base?</h2>
-              <p style={{ color: '#b9cde8', maxWidth: '58ch', margin: '0 auto 1.6rem' }}>
+              <h2>Pronto para escolher sua base?</h2>
+              <p style={{ maxWidth: '58ch', margin: '0 auto 1.6rem' }}>
                 São {datasets.length} conjuntos de dados de sensores prontos para download, cada um
                 com cenário descrito, dicionário de colunas e uma pergunta de aprendizado de
                 máquina para responder. O roteiro completo espera na aba seguinte, e há {posts.length} artigos

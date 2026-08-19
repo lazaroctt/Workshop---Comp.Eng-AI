@@ -116,7 +116,7 @@ export default function ModalDataset({ dataset, aoFechar }) {
           <h4>Primeiras linhas do arquivo</h4>
           {carregando && (
             <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Loader2 size={16} className="flutua" /> Carregando a prévia
+              <Loader2 size={16} /> Carregando a prévia
             </p>
           )}
           {erro && <p>Não foi possível ler o arquivo agora. O download continua funcionando normalmente.</p>}

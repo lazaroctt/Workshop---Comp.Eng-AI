@@ -34,13 +34,14 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 .
 ├── public/
 │   ├── datasets/                 8 arquivos CSV servidos para download
-│   ├── logo-uff.svg              PLACEHOLDER do brasão da UFF
-│   ├── logo-lacop.svg            PLACEHOLDER da marca do LACOP
-│   └── favicon.svg
+│   ├── assets/
+│   │   └── brasao-uff.png        BRASÃO OFICIAL DA UFF (inserir aqui)
+│   └── favicon.svg               ícone de aba provisório
 ├── scripts/
 │   └── gerar-datasets.mjs        gerador das bases sintéticas (Node puro)
 ├── src/
 │   ├── components/               cabeçalho, rodapé, cartões, modal, prompts
+│   │   └── Brasao.jsx            caminho e exibição do brasão institucional
 │   ├── data/
 │   │   ├── datasets.js           catálogo e dicionário de dados das bases
 │   │   ├── roteiro.js            etapas do case e prompts para copiar
@@ -57,15 +58,27 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 
 ## Tarefas comuns de manutenção
 
-### Trocar as logos institucionais
+### Inserir o brasão oficial da UFF
 
-Os arquivos `public/logo-uff.svg` e `public/logo-lacop.svg` são **placeholders** e estão
-marcados como tal dentro do próprio SVG. Substitua pelos arquivos oficiais mantendo os mesmos
-nomes e nada mais precisa mudar. Se preferir outro caminho ou formato, ajuste as referências em
-`src/components/Marca.jsx` e `src/components/Rodape.jsx`.
+Salve o arquivo do brasão em:
 
-O endereço de contato no rodapé também é fictício e está sinalizado por comentário em
-`src/components/Rodape.jsx`.
+```
+public/assets/brasao-uff.png
+```
+
+É só isso. O componente `src/components/Brasao.jsx` já aponta para esse caminho, e o mesmo
+arquivo aparece no cabeçalho, com 54 px de altura, e no rodapé, com 62 px. A largura se ajusta
+sozinha pela proporção da imagem.
+
+Prefira PNG com fundo transparente e pelo menos 240 px de altura, ou um SVG. Para usar outro
+nome ou formato, troque apenas a constante `CAMINHO_BRASAO` no topo de `Brasao.jsx`.
+
+Enquanto o arquivo não estiver na pasta, aparece uma moldura tracejada indicando o espaço
+reservado. Nenhum símbolo é desenhado no lugar do brasão oficial.
+
+O ícone de aba em `public/favicon.svg` é provisório, apenas uma inicial em fundo azul, e pode
+ser trocado por um arquivo institucional. O endereço de contato do rodapé também é fictício e
+está sinalizado por comentário em `src/components/Rodape.jsx`.
 
 ### Publicar um vídeo
 
@@ -140,6 +153,20 @@ downloads e as imagens continuem apontando para o lugar certo:
 ```bash
 npx vite build --base=/workshop-ia-sensores/
 ```
+
+## Identidade visual
+
+A referência é material de curso universitário, não interface de produto. Fundo claro,
+tipografia serifada nos títulos com a família Lora, corpo de texto em Inter, código em IBM Plex
+Mono. A paleta se resume a azul institucional, tons de cinza e três cores de apoio em tom
+fechado, usadas apenas para diferenciar categorias. Bordas de um pixel no lugar de sombras
+difusas, cantos discretos e ícones em traço fino.
+
+O tema claro é o padrão da plataforma. O modo escuro fica como alternativa no botão do
+cabeçalho e também segue tons sóbrios, sem brilho ou saturação alta.
+
+Os tokens de cor, tipografia e espaçamento ficam no topo de `src/styles/global.css`, no bloco
+`:root`. Ajustar a identidade passa por editar apenas esse trecho.
 
 ## Tecnologias
 

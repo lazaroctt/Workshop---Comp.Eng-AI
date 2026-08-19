@@ -1,6 +1,9 @@
+<!--
+  Ícone de aba provisório, em tipografia simples.
+  Substitua por um arquivo institucional quando houver um disponível.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b1b3a"/>
-  <circle cx="32" cy="32" r="7" fill="#22d3ee"/>
-  <path d="M32 11a21 21 0 0 1 0 42" fill="none" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round" opacity=".85"/>
-  <path d="M32 20a12 12 0 0 0 0 24" fill="none" stroke="#f5b642" stroke-width="3.5" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="4" fill="#16335c"/>
+  <text x="32" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="34" font-weight="600" fill="#ffffff" letter-spacing="1">L</text>
 </svg>

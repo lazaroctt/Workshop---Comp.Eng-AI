@@ -1,4 +1,5 @@
 import { MapPin, Mail, GraduationCap, ArrowUpRight } from 'lucide-react';
+import Brasao from './Brasao.jsx';
 
 /**
  * Rodapé institucional. Mantém a menção ao LACOP e à UFF visível em
@@ -13,11 +14,20 @@ export default function Rodape({ abas, aoNavegar }) {
         <div className="rodape-grade">
           <div>
             <div className="rodape-marca">
-              {/* Placeholder: troque public/logo-uff.svg pelo brasão oficial. */}
-              <img src={`${import.meta.env.BASE_URL}logo-uff.svg`} alt="Brasão da UFF" />
+              {/* O arquivo oficial vai em public/assets/brasao-uff.png. */}
+              <Brasao altura={62} className="" />
               <div>
-                <strong style={{ display: 'block', fontSize: '1.05rem' }}>LACOP</strong>
-                <span style={{ fontSize: '0.85rem', color: '#9db4d2' }}>
+                <strong
+                  style={{
+                    display: 'block',
+                    fontFamily: 'var(--fonte-titulo)',
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                  }}
+                >
+                  LACOP
+                </strong>
+                <span style={{ fontSize: '0.86rem', color: '#a8b3c2' }}>
                   Laboratório de Comunicações Ópticas
                 </span>
               </div>

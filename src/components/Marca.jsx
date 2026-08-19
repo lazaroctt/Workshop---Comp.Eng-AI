@@ -1,17 +1,21 @@
+import Brasao from './Brasao.jsx';
+
 /**
- * Identidade institucional exibida no cabeçalho e no rodapé.
+ * Identidade institucional do cabeçalho: brasão da UFF, filete de separação
+ * e a assinatura do laboratório com o nome do workshop.
  *
- * IMPORTANTE: os arquivos public/logo-uff.svg e public/logo-lacop.svg são
- * placeholders. Substitua pelos arquivos oficiais mantendo os mesmos nomes,
- * ou ajuste os caminhos abaixo.
+ * O arquivo do brasão fica em public/assets/brasao-uff.png. Detalhes em
+ * src/components/Brasao.jsx.
  */
 export default function Marca({ aoClicar }) {
   return (
     <button type="button" className="marca" onClick={aoClicar} aria-label="Ir para a página inicial">
-      <img src={`${import.meta.env.BASE_URL}logo-uff.svg`} alt="Brasão da UFF" className="marca-uff" />
+      <Brasao altura={54} />
+      <span className="marca-divisor" aria-hidden="true" />
       <span className="marca-texto">
+        <span className="marca-instituicao">Universidade Federal Fluminense</span>
         <strong>Workshop IA e Sensores</strong>
-        <span>LACOP · Universidade Federal Fluminense</span>
+        <span>Laboratório de Comunicações Ópticas</span>
       </span>
     </button>
   );

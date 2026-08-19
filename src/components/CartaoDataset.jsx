@@ -20,7 +20,7 @@ export default function CartaoDataset({ dataset, aoAbrirDetalhes }) {
     <article className="cartao cartao-dataset">
       <div className="dataset-topo">
         <span className="cartao-icone" style={{ marginBottom: 0 }}>
-          <Icone size={24} />
+          <Icone size={20} strokeWidth={1.6} />
         </span>
         <div style={{ flex: 1 }}>
           <h3 style={{ marginBottom: '0.35rem' }}>{dataset.titulo}</h3>

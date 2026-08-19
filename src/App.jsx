@@ -30,11 +30,14 @@ function lerRota() {
   return { aba: IDS.includes(aba) ? aba : 'sobre', parametro: parametro || null };
 }
 
-/** Define o tema inicial: preferência salva ou configuração do sistema. */
+/**
+ * Define o tema inicial. O padrão da plataforma é o tema claro, que é a
+ * identidade principal. O modo escuro existe como alternativa e só entra
+ * quando a pessoa escolhe pelo botão do cabeçalho.
+ */
 function temaInicial() {
   const salvo = localStorage.getItem('tema-workshop');
-  if (salvo === 'claro' || salvo === 'escuro') return salvo;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+  return salvo === 'escuro' ? 'escuro' : 'claro';
 }
 
 export default function App() {

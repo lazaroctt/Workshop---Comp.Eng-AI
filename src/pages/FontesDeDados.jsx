@@ -1,7 +1,5 @@
 import { useMemo, useState } from 'react';
-import {
-  Database, Search, DownloadCloud, Terminal, FileSpreadsheet, Info, ArrowRight,
-} from 'lucide-react';
+import { Search, DownloadCloud, Terminal, ArrowRight } from 'lucide-react';
 
 import Revelar from '../components/Revelar.jsx';
 import CartaoDataset from '../components/CartaoDataset.jsx';
@@ -53,7 +51,7 @@ export default function FontesDeDados({ navegar }) {
       <section className="secao">
         <div className="container">
           <Revelar className="cabecalho-secao">
-            <span className="olho"><Database size={14} /> Fontes de dados</span>
+            <span className="olho">Fontes de dados</span>
             <h2>Bases de sensores prontas para baixar</h2>
             <p>
               Todos os arquivos estão em CSV com separador vírgula e cabeçalho na primeira linha.
@@ -126,7 +124,7 @@ export default function FontesDeDados({ navegar }) {
       <section className="secao secao-alt">
         <div className="container">
           <Revelar className="cabecalho-secao">
-            <span className="olho"><FileSpreadsheet size={14} /> Visão geral</span>
+            <span className="olho">Visão geral</span>
             <h2>Comparativo rápido das bases</h2>
             <p>
               Use esta tabela para decidir em grupo. A coluna de alvo indica o que o modelo deve
@@ -170,7 +168,7 @@ export default function FontesDeDados({ navegar }) {
         <div className="container">
           <div className="grade grade-2" style={{ gap: '2rem', alignItems: 'start' }}>
             <Revelar>
-              <span className="olho"><Info size={14} /> Como os dados nasceram</span>
+              <span className="olho">Como os dados nasceram</span>
               <h2>Sintéticos, com física por trás</h2>
               <p>
                 Nenhum arquivo veio de coleta real. Todos saíram de um gerador que reproduz
@@ -193,7 +191,7 @@ export default function FontesDeDados({ navegar }) {
 
             <Revelar atraso={120}>
               <article className="cartao">
-                <span className="cartao-icone"><Terminal size={24} /></span>
+                <span className="cartao-icone"><Terminal size={20} strokeWidth={1.6} /></span>
                 <h3>Gerar novamente ou modificar</h3>
                 <p>
                   O gerador é um script Node sem dependências. Para recriar os arquivos ou ajustar

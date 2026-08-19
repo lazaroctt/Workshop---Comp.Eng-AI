@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  ListChecks, ChevronRight, Clock, Target, CheckCircle2, Circle, Rocket,
-  Backpack, Sparkles, ArrowRight, Lightbulb, Database,
-} from 'lucide-react';
+import { ChevronRight, Clock, CheckCircle2, Circle, Sparkles, ArrowRight, Lightbulb, Database } from 'lucide-react';
 
 import Revelar from '../components/Revelar.jsx';
 import CaixaPrompt from '../components/CaixaPrompt.jsx';
@@ -53,7 +50,7 @@ export default function ComoRealizar({ navegar }) {
       <section className="secao">
         <div className="container">
           <Revelar className="cabecalho-secao">
-            <span className="olho"><ListChecks size={14} /> Como realizar o projeto</span>
+            <span className="olho">Como realizar o projeto</span>
             <h2>Do arquivo CSV ao modelo apresentado, em oito etapas</h2>
             <p>
               O case foi desenhado para caber em um encontro. Cada etapa tem objetivo próprio,
@@ -78,7 +75,7 @@ export default function ComoRealizar({ navegar }) {
       <section className="secao-compacta secao-alt">
         <div className="container">
           <Revelar className="cabecalho-secao" style={{ marginBottom: '1.6rem' }}>
-            <span className="olho"><Backpack size={14} /> Antes de começar</span>
+            <span className="olho">Antes de começar</span>
             <h2>O que ter em mãos</h2>
           </Revelar>
 
@@ -109,7 +106,7 @@ export default function ComoRealizar({ navegar }) {
             }}
           >
             <div>
-              <span className="olho"><Target size={14} /> Roteiro</span>
+              <span className="olho">Roteiro</span>
               <h2 style={{ marginBottom: 0 }}>As oito etapas do case</h2>
             </div>
             <button type="button" className="btn btn-secundario btn-pequeno" onClick={alternarTodas}>
@@ -133,8 +130,8 @@ export default function ComoRealizar({ navegar }) {
                       aria-expanded={aberta}
                     >
                       <ChevronRight size={18} className={`chevron ${aberta ? 'aberto' : ''}`} />
-                      <span className="cartao-icone" style={{ width: 40, height: 40, marginBottom: 0, borderRadius: 12 }}>
-                        <Icone size={19} />
+                      <span className="cartao-icone" style={{ width: 34, height: 34, marginBottom: 0 }}>
+                        <Icone size={17} strokeWidth={1.6} />
                       </span>
                       <span style={{ flex: 1 }}>
                         <h3>{etapa.titulo}</h3>
@@ -192,7 +189,7 @@ export default function ComoRealizar({ navegar }) {
         <div className="container">
           <div className="grade grade-2" style={{ gap: '2.4rem', alignItems: 'start' }}>
             <Revelar>
-              <span className="olho"><CheckCircle2 size={14} /> Entrega</span>
+              <span className="olho">Entrega</span>
               <h2>Checklist final</h2>
               <p>
                 Marque conforme avançar. O estado fica salvo neste navegador, então dá para fechar
@@ -243,7 +240,7 @@ export default function ComoRealizar({ navegar }) {
             </Revelar>
 
             <Revelar atraso={120}>
-              <span className="olho"><Rocket size={14} /> Para ir além</span>
+              <span className="olho">Para ir além</span>
               <h2>Se sobrar tempo ou houver segundo dia</h2>
               <div className="grade" style={{ gap: '0.9rem', marginTop: '1.2rem' }}>
                 {extensoes.map((ext) => (
@@ -272,7 +269,7 @@ export default function ComoRealizar({ navegar }) {
                 onClick={() => navegar('dados')}
                 style={{ textAlign: 'left', cursor: 'pointer' }}
               >
-                <span className="cartao-icone"><Database size={22} /></span>
+                <span className="cartao-icone"><Database size={20} strokeWidth={1.6} /></span>
                 <h3>Ainda não escolheu a base?</h3>
                 <p style={{ marginBottom: 0 }}>
                   Volte para as fontes de dados, leia os cenários e baixe o CSV que combina com a
@@ -286,7 +283,7 @@ export default function ComoRealizar({ navegar }) {
                 onClick={() => navegar('blog')}
                 style={{ textAlign: 'left', cursor: 'pointer' }}
               >
-                <span className="cartao-icone"><Lightbulb size={22} /></span>
+                <span className="cartao-icone"><Lightbulb size={20} strokeWidth={1.6} /></span>
                 <h3>Quer entender melhor antes?</h3>
                 <p style={{ marginBottom: 0 }}>
                   Os artigos do blog explicam métricas, escolha do tipo de problema e as armadilhas

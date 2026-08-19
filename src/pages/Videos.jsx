@@ -1,4 +1,4 @@
-import { PlayCircle, MonitorPlay, Info, ArrowRight } from 'lucide-react';
+import { MonitorPlay, Info, ArrowRight } from 'lucide-react';
 import Revelar from '../components/Revelar.jsx';
 import VideoQuadro from '../components/VideoQuadro.jsx';
 import Aviso from '../components/Aviso.jsx';
@@ -11,7 +11,7 @@ export default function Videos({ navegar }) {
     <section className="secao">
       <div className="container">
         <Revelar className="cabecalho-secao">
-          <span className="olho"><PlayCircle size={14} /> Vídeos</span>
+          <span className="olho">Vídeos</span>
           <h2>Gravações de apoio ao encontro</h2>
           <p>
             Os vídeos acompanham as etapas do roteiro e permitem rever qualquer trecho no próprio
@@ -56,7 +56,7 @@ export default function Videos({ navegar }) {
 
         <Revelar>
           <div className="cartao" style={{ marginTop: '2.4rem', display: 'flex', gap: '1.2rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-            <span className="cartao-icone" style={{ marginBottom: 0 }}><Info size={22} /></span>
+            <span className="cartao-icone" style={{ marginBottom: 0 }}><Info size={20} strokeWidth={1.6} /></span>
             <div style={{ flex: 1, minWidth: '260px' }}>
               <h3>Prefere acompanhar pelo texto?</h3>
               <p>
