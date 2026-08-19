@@ -1,0 +1,22 @@
+{
+  "name": "workshop-ia-sensores-lacop",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Plataforma educacional do workshop de IA aplicada a dados de sensores IoT (LACOP / UFF)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "datasets": "node scripts/gerar-datasets.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^1.33.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.5",
+    "vite": "^8.2.1"
+  }
+}

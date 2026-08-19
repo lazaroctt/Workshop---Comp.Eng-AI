@@ -1,0 +1,43 @@
+Acessórios das 5 ideias anteriores
+
+1. Reconhecimento de gestos
+ESP32 (ou Arduino Uno/Nano), sensor MPU-6050 (acelerômetro+giroscópio), 4 jumpers, protoboard, LED + resistor 220Ω, cabo USB. Custo baixíssimo, montagem I2C (só 4 fios).
+
+2. Nariz eletrônico
+ESP32/Arduino, sensor de gás MQ-2 ou MQ-135, protoboard, jumpers, cabo USB. Opcional: DHT11 (temperatura/umidade) para adicionar features. Cuidado: sensor MQ esquenta, precisa de alguns minutos de "aquecimento".
+
+3. Anomalia em vibração
+ESP32, MPU-6050 (mesmo da ideia 1), um mini motor DC ou cooler 5V + fita/peso para desbalancear, protoboard, jumpers, transistor + diodo se for controlar o motor. Pode reusar todo o kit da ideia 1.
+
+4. Voz/som (keyword spotting)
+ESP32 (melhor que Arduino Uno aqui — precisa de mais memória), microfone I2S INMP441 (recomendado) ou módulo MAX9814 analógico, protoboard, jumpers, relé + LED para saída. Este é o mais exigente de hardware.
+
+5. Co-piloto de firmware
+Nenhum acessório novo — usa o hardware de qualquer outra ideia. Só precisa do computador com acesso ao Claude/ChatGPT.
+
+Kit base que serve para quase tudo
+
+ESP32 DevKit, Arduino Uno/Nano, protoboard, kit de jumpers, LEDs, resistores, cabo USB. Com MPU-6050 + MQ-2 você já cobre metade das ideias.
+
+Novas ideias (eletrônica simples)
+
+6. Classificador de cor/objeto com LDR ou sensor de cor
+Sensor TCS3230/TCS34725 (cor) ou até LDRs baratos leem objetos. IA treina para distinguir "maçã vs limão" ou faixas de cor. Acessórios: ESP32/Arduino, sensor de cor TCS34725, LEDs. Muito visual e barato.
+
+7. Predição/regressão de temperatura
+DHT11/DHT22 coleta temperatura ao longo do tempo; a IA gera um modelo que prevê o próximo valor ou detecta tendência. Introduz regressão (não só classificação). Acessórios: Arduino/ESP32, DHT11, protoboard, jumpers. Ultra simples.
+
+8. Contador inteligente com sensor ultrassônico
+HC-SR04 mede distância; IA classifica padrões (ex: "objeto passando" vs "parado" vs "aproximando"). Acessórios: HC-SR04, ESP32/Arduino, jumpers. Sensor icônico e baratíssimo.
+
+9. Postura/inclinação com acelerômetro
+MPU-6050 detecta se algo está "em pé", "deitado", "caindo". Aplicação: detector de queda ou monitor de postura. Reusa o kit da ideia 1, muda só o problema. Ótimo gancho com acessibilidade/saúde.
+
+10. Botão "mágico" — classificação de padrões de toque
+Um simples botão ou sensor de toque capacitivo (TTP223) capta ritmos de toque (código Morse simples, toque curto/longo/duplo); a IA aprende a distinguir os padrões. Acessórios: botão push ou TTP223, ESP32/Arduino, LED. O mais barato de todos.
+
+11. Luminosidade adaptativa (aprende sua preferência)
+LDR lê a luz do ambiente; a IA aprende quando você prefere acender o LED, virando um "controlador esperto". Acessórios: LDR, resistor, LED, Arduino/ESP32. Barato e conceitualmente elegante (aprende comportamento).
+
+12. Reconhecimento de assobio/palma (só analógico)
+Módulo microfone KY-038 (analógico, bem barato) capta amplitude; IA distingue palma vs assobio vs silêncio sem precisar de I2S. Alternativa low-cost à ideia 4. Acessórios: KY-038, Arduino/ESP32, LED/relé.
