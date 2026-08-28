@@ -1,9 +1,0 @@
-<!--
-  Ícone de aba provisório, em tipografia simples.
-  Substitua por um arquivo institucional quando houver um disponível.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="4" fill="#16335c"/>
-  <text x="32" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
-        font-size="34" font-weight="600" fill="#ffffff" letter-spacing="1">L</text>
-</svg>

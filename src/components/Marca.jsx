@@ -1,17 +1,25 @@
-import Brasao from './Brasao.jsx';
+import MarcaUFF from './MarcaUFF.jsx';
+import MarcaLacop from './MarcaLacop.jsx';
 
 /**
- * Identidade institucional do cabeçalho: brasão da UFF, filete de separação
- * e a assinatura do laboratório com o nome do workshop.
+ * Identidade institucional do cabeçalho, alinhada à esquerda: símbolo da UFF,
+ * marca do laboratório e a assinatura em texto do workshop.
  *
- * O arquivo do brasão fica em public/assets/brasao-uff.png. Detalhes em
- * src/components/Brasao.jsx.
+ * Os arquivos de imagem ficam em public/assets/uff e public/assets/lacop.
+ * Veja MarcaUFF.jsx e MarcaLacop.jsx para os nomes esperados.
  */
 export default function Marca({ aoClicar }) {
   return (
     <button type="button" className="marca" onClick={aoClicar} aria-label="Ir para a página inicial">
-      <Brasao altura={54} />
+      <span className="marca-logos">
+        <MarcaUFF altura={40} />
+        <span className="marca-lacop-slot">
+          <MarcaLacop altura={44} />
+        </span>
+      </span>
+
       <span className="marca-divisor" aria-hidden="true" />
+
       <span className="marca-texto">
         <span className="marca-instituicao">Universidade Federal Fluminense</span>
         <strong>Workshop IA e Sensores</strong>

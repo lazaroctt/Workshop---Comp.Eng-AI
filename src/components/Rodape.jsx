@@ -1,5 +1,6 @@
 import { MapPin, Mail, GraduationCap, ArrowUpRight } from 'lucide-react';
-import Brasao from './Brasao.jsx';
+import MarcaUFF from './MarcaUFF.jsx';
+import MarcaLacop from './MarcaLacop.jsx';
 
 /**
  * Rodapé institucional. Mantém a menção ao LACOP e à UFF visível em
@@ -13,24 +14,28 @@ export default function Rodape({ abas, aoNavegar }) {
       <div className="container">
         <div className="rodape-grade">
           <div>
+            {/* Marcas em versão clara: os arquivos ficam em public/assets. */}
             <div className="rodape-marca">
-              {/* O arquivo oficial vai em public/assets/brasao-uff.png. */}
-              <Brasao altura={62} className="" />
-              <div>
-                <strong
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--fonte-titulo)',
-                    fontSize: '1.1rem',
-                    fontWeight: 600,
-                  }}
-                >
-                  LACOP
-                </strong>
-                <span style={{ fontSize: '0.86rem', color: '#a8b3c2' }}>
-                  Laboratório de Comunicações Ópticas
-                </span>
-              </div>
+              <MarcaUFF altura={46} variante="branco" />
+              <span className="rodape-divisor" aria-hidden="true" />
+              <MarcaLacop altura={46} variante="branco" />
+            </div>
+
+            <div style={{ marginBottom: '1rem' }}>
+              <strong
+                style={{
+                  display: 'block',
+                  fontFamily: 'var(--fonte-titulo)',
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  color: '#fff',
+                }}
+              >
+                LACOP
+              </strong>
+              <span style={{ fontSize: '0.86rem', color: '#a8b3c2' }}>
+                Laboratório de Comunicações Ópticas
+              </span>
             </div>
             <p>
               Material produzido para o workshop de inteligência artificial aplicada a dados de

@@ -1,0 +1,18 @@
+SÍMBOLO E LOGOTIPO DA UFF
+=========================
+
+Arquivos extraídos do pacote oficial de identidade visual da Universidade
+Federal Fluminense, publicado pela Superintendência de Comunicação Social
+em https://www.uff.br/scs/identidade-visual/
+
+  simbolo-uff-azul.png                símbolo, versão azul, fundo claro
+  simbolo-uff-branco.png              símbolo, versão branca, fundo escuro
+  logotipo-uff-vertical-azul.png      assinatura completa, vertical
+  logotipo-uff-horizontal-azul.png    assinatura completa, horizontal
+  logotipo-uff-horizontal-branco.png  assinatura horizontal para fundo escuro
+
+A plataforma usa as duas primeiras imagens no cabeçalho e no rodapé. As
+demais ficam à disposição para slides, cartazes e material impresso.
+
+Para trocar por outra versão, mantenha os mesmos nomes de arquivo ou ajuste
+as constantes no topo de src/components/MarcaUFF.jsx.

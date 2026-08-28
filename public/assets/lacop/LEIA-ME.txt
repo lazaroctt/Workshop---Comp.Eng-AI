@@ -1,0 +1,19 @@
+MARCA DO LACOP
+==============
+
+Arquivos desta pasta:
+
+  lacop.png         versão principal, usada no cabeçalho (fundo claro)
+  lacop-branco.png  versão clara para o rodapé escuro, opcional
+
+O rodapé tem fundo azul escuro, e a tipografia da marca é azul. Sem um
+arquivo em versão clara, a plataforma mostra a marca original sobre uma
+placa branca, o que preserva as cores oficiais. Basta salvar lacop-branco.png
+para que a placa deixe de ser usada.
+
+Formato: PNG com fundo transparente ou SVG.
+Exibição: 34 px de altura no cabeçalho e 40 px no rodapé, com a largura
+acompanhando a proporção da imagem.
+
+Para usar outros nomes, ajuste as constantes no topo de
+src/components/MarcaLacop.jsx.

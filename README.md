@@ -34,14 +34,15 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 .
 ├── public/
 │   ├── datasets/                 8 arquivos CSV servidos para download
-│   ├── assets/
-│   │   └── brasao-uff.png        BRASÃO OFICIAL DA UFF (inserir aqui)
-│   └── favicon.svg               ícone de aba provisório
+│   └── assets/
+│       ├── uff/                  símbolo e logotipo oficiais da UFF
+│       └── lacop/                MARCA DO LACOP (inserir aqui)
 ├── scripts/
 │   └── gerar-datasets.mjs        gerador das bases sintéticas (Node puro)
 ├── src/
 │   ├── components/               cabeçalho, rodapé, cartões, modal, prompts
-│   │   └── Brasao.jsx            caminho e exibição do brasão institucional
+│   │   ├── MarcaUFF.jsx          símbolo da UFF, versões azul e branca
+│   │   └── MarcaLacop.jsx        marca do laboratório e caminho do arquivo
 │   ├── data/
 │   │   ├── datasets.js           catálogo e dicionário de dados das bases
 │   │   ├── roteiro.js            etapas do case e prompts para copiar
@@ -58,27 +59,50 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 
 ## Tarefas comuns de manutenção
 
-### Inserir o brasão oficial da UFF
+### Marcas institucionais
 
-Salve o arquivo do brasão em:
+Cada instituição tem a sua pasta dentro de `public/assets`.
+
+**UFF, já configurada.** Os arquivos vieram do pacote oficial de identidade visual publicado
+pela Superintendência de Comunicação Social em <https://www.uff.br/scs/identidade-visual/>.
 
 ```
-public/assets/brasao-uff.png
+public/assets/uff/
+├── simbolo-uff-azul.png                cabeçalho no tema claro
+├── simbolo-uff-branco.png              cabeçalho no tema escuro e rodapé
+├── logotipo-uff-vertical-azul.png      assinatura completa, para slides
+├── logotipo-uff-horizontal-azul.png    assinatura completa, horizontal
+└── logotipo-uff-horizontal-branco.png  assinatura horizontal, fundo escuro
 ```
 
-É só isso. O componente `src/components/Brasao.jsx` já aponta para esse caminho, e o mesmo
-arquivo aparece no cabeçalho, com 54 px de altura, e no rodapé, com 62 px. A largura se ajusta
-sozinha pela proporção da imagem.
+O símbolo aparece no canto superior esquerdo com 40 px de altura e no rodapé com 46 px,
+trocando de versão conforme o tema. Serve também de ícone de aba do navegador.
 
-Prefira PNG com fundo transparente e pelo menos 240 px de altura, ou um SVG. Para usar outro
-nome ou formato, troque apenas a constante `CAMINHO_BRASAO` no topo de `Brasao.jsx`.
+**LACOP, já configurada.**
 
-Enquanto o arquivo não estiver na pasta, aparece uma moldura tracejada indicando o espaço
-reservado. Nenhum símbolo é desenhado no lugar do brasão oficial.
+```
+public/assets/lacop/
+├── lacop.png         versão principal, cabeçalho de fundo claro
+└── lacop-branco.png  versão clara para o rodapé azul, opcional
+```
 
-O ícone de aba em `public/favicon.svg` é provisório, apenas uma inicial em fundo azul, e pode
-ser trocado por um arquivo institucional. O endereço de contato do rodapé também é fictício e
-está sinalizado por comentário em `src/components/Rodape.jsx`.
+A marca aparece ao lado do símbolo da UFF, com 44 px de altura no cabeçalho e 46 px no rodapé.
+
+O rodapé tem fundo azul escuro e a tipografia da marca é azul, então a leitura ficaria
+prejudicada. Sem um arquivo em versão clara, a plataforma exibe a marca original sobre uma placa
+branca, o que preserva as cores oficiais. Ao salvar `lacop-branco.png`, a placa deixa de ser
+usada e a versão clara entra no lugar.
+
+Em telas abaixo de 1200 px a marca do laboratório sai do cabeçalho para dar espaço às abas, e
+permanece no rodapé. Se a pasta ficar sem arquivo, aparece um espaço tracejado indicando a
+posição reservada, e nenhuma marca é desenhada no lugar da oficial.
+
+Para usar outros nomes ou formatos, ajuste as constantes no topo de
+`src/components/MarcaUFF.jsx` e `src/components/MarcaLacop.jsx`. As duas pastas trazem um
+arquivo `LEIA-ME.txt` com o mesmo resumo.
+
+O endereço de contato do rodapé é fictício e está sinalizado por comentário em
+`src/components/Rodape.jsx`.
 
 ### Publicar um vídeo
 
