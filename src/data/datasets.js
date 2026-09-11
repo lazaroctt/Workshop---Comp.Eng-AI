@@ -1,13 +1,19 @@
 /**
- * Catálogo das bases sintéticas do workshop.
+ * Catálogo de bases de dados da plataforma.
  *
- * Cada item descreve o cenário, o dicionário de dados coluna a coluna e a
- * pergunta de machine learning que a turma pode responder com o arquivo.
- * Os CSV ficam em public/datasets e são gerados por scripts/gerar-datasets.mjs.
+ * datasets       bases sintéticas, servidas em public/datasets para download
+ *                direto. Cada item traz cenário, dicionário de dados coluna a
+ *                coluna e uma pergunta de machine learning para responder.
+ *                Os CSV são gerados por scripts/gerar-datasets.mjs.
+ *
+ * basesPublicas  bases reais e gratuitas do UCI Machine Learning Repository,
+ *                com link para a página oficial de cada uma. Links conferidos
+ *                em setembro de 2026.
  */
 
 import {
   Thermometer, Vibrate, Zap, Wind, Droplets, Users, Ruler, Move3d,
+  Smartphone, Footprints, PlugZap, TestTubes,
 } from 'lucide-react';
 
 export const datasets = [
@@ -29,7 +35,7 @@ export const datasets = [
     cenario:
       'Um nó ESP32 com sensor de temperatura e umidade ficou instalado no laboratório de óptica e em uma sala de aula. A cada quinze minutos ele enviou as leituras para um servidor local. O comportamento térmico acompanha o sol, sobe quando a sala enche e cai quando o ar condicionado entra em operação. É a base mais direta para quem nunca treinou um modelo antes.',
     pergunta:
-      'Qual será a temperatura da sala daqui a uma hora? E como a mesma tabela pode indicar se o ambiente está confortável para uma aula?',
+      'Qual será a temperatura da sala daqui a uma hora? E como a mesma tabela pode indicar se o ambiente está confortável para quem está nele?',
     alvo: 'temperatura_c (regressão) ou conforto (classificação)',
     dicionario: [
       { coluna: 'timestamp', tipo: 'data e hora', descricao: 'Momento exato da leitura, no formato AAAA-MM-DD HH:MM:SS.' },
@@ -103,7 +109,7 @@ export const datasets = [
     resumo:
       'Curva de carga de um prédio universitário, com rotina de expediente, recesso no meio do mês e forte influência do clima.',
     cenario:
-      'O medidor instalado no quadro geral registra o consumo hora a hora. O padrão semanal fica evidente: dias úteis carregados, finais de semana leves e dois dias de recesso quase parados. Quando a temperatura externa sobe, a refrigeração puxa o consumo junto. Esse conjunto é o caminho mais curto para explicar regressão a quem nunca ouviu o termo.',
+      'O medidor instalado no quadro geral registra o consumo hora a hora. O padrão semanal fica evidente: dias úteis carregados, finais de semana leves e dois dias de recesso quase parados. Quando a temperatura externa sobe, a refrigeração puxa o consumo junto. Esse conjunto é o caminho mais curto para entender regressão na prática.',
     pergunta:
       'Quanto o prédio vai consumir na próxima hora, considerando calendário, clima e ocupação?',
     alvo: 'consumo_kwh',
@@ -220,7 +226,7 @@ export const datasets = [
     resumo:
       'Fusão de quatro sensores baratos para responder uma pergunta simples: tem gente na sala agora?',
     cenario:
-      'Um sensor de presença sozinho falha quando as pessoas ficam paradas estudando. Ao juntar contagem de eventos do PIR, gás carbônico, ruído e luminosidade, o quadro fica muito mais confiável. A semana registrada tem blocos de aula pela manhã, tarde e noite, além de finais de semana quase vazios. Serve bem para discutir automação de iluminação e de climatização.',
+      'Um sensor de presença sozinho falha quando as pessoas ficam paradas estudando. Ao juntar contagem de eventos do PIR, gás carbônico, ruído e luminosidade, o quadro fica muito mais confiável. A semana registrada tem blocos de aula pela manhã, tarde e noite, além de finais de semana quase vazios. É um bom ponto de partida para pensar em automação de iluminação e de climatização.',
     pergunta:
       'A sala está ocupada neste intervalo? E qual sensor sozinho chega mais perto de acertar?',
     alvo: 'sala_ocupada',
@@ -298,7 +304,7 @@ export const datasets = [
     resumo:
       'Janelas de acelerômetro e giroscópio rotuladas como em pé, sentado, deitado, caminhando ou queda.',
     cenario:
-      'O MPU-6050 preso à cintura registra aceleração nos três eixos e velocidade angular. Cada janela de sinal virou uma linha com médias, desvio da magnitude e jerk máximo, que é a variação brusca da aceleração. A classe queda aparece em cerca de 12% das amostras, o que reproduz bem a realidade de um detector de eventos raros e abre a conversa sobre o custo de um alarme perdido.',
+      'O MPU-6050 preso à cintura registra aceleração nos três eixos e velocidade angular. Cada janela de sinal virou uma linha com médias, desvio da magnitude e jerk máximo, que é a variação brusca da aceleração. A classe queda aparece em cerca de 12% das amostras, o que reproduz bem a realidade de um detector de eventos raros e mostra na prática o custo de um alarme perdido.',
     pergunta:
       'Qual postura o corpo está assumindo nesta janela, e o sistema consegue reconhecer uma queda a tempo?',
     alvo: 'postura',
@@ -319,8 +325,89 @@ export const datasets = [
     dicas: [
       'Repare que o eixo dominante já separa boa parte das posturas estáticas. O desafio está em caminhar contra cair.',
       'Em um detector de queda, deixar de avisar custa mais caro que um alarme falso. Ajuste o limiar pensando nisso.',
-      'Este conjunto conversa direto com a ideia 9 da lista de projetos com MPU-6050.',
+      'O MPU-6050 é o mesmo chip da base pública IM-AccGyro, listada nesta página. Vale comparar os dois conjuntos.',
     ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Bases públicas do UCI Machine Learning Repository                  */
+/* ------------------------------------------------------------------ */
+
+export const basesPublicas = [
+  {
+    id: 'uci-har',
+    titulo: 'UCI HAR',
+    nomeCompleto: 'Human Activity Recognition Using Smartphones',
+    icone: Smartphone,
+    cor: 'ciano',
+    tarefa: 'Classificação',
+    descricao:
+      'Reconhecimento de atividades como andar, sentar e subir escada a partir do acelerômetro e do giroscópio de um smartphone preso à cintura.',
+    instancias: '10.299',
+    tamanho: '58,2 MB',
+    url: 'https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones',
+    dica: 'Além do sinal bruto, a base traz atributos já calculados por janela, o que encurta bastante o caminho até o primeiro modelo.',
+  },
+  {
+    id: 'harth',
+    titulo: 'HARTH',
+    nomeCompleto: 'Human Activity Recognition Trondheim',
+    icone: Footprints,
+    cor: 'verde',
+    tarefa: 'Classificação de séries temporais',
+    descricao:
+      'Atividades humanas registradas por dois acelerômetros, na coxa e na lombar, com um arquivo CSV por participante.',
+    instancias: '6.461.328',
+    tamanho: '296,4 MB',
+    url: 'https://archive.ics.uci.edu/dataset/779/harth',
+    dica: 'O pacote é grande. Comece pelo CSV de um único participante antes de juntar todos.',
+  },
+  {
+    id: 'im-accgyro',
+    titulo: 'IM-AccGyro',
+    nomeCompleto: 'Intelligent Media Accelerometer and Gyroscope',
+    icone: Move3d,
+    cor: 'roxo',
+    tarefa: 'Classificação',
+    descricao:
+      'Acelerômetro e giroscópio com o GY-521, a placa do MPU-6050, em seis atividades: boxe, palmas, corrida, sentado, em pé e caminhada.',
+    instancias: '800',
+    tamanho: null,
+    url: 'https://archive.ics.uci.edu/dataset/578/intelligent+media+accelerometer+and+gyroscope+im+accgyro+dataset',
+    dica: 'É o mesmo chip da base sintética de postura, o que facilita comparar os resultados.',
+    // Conferido em setembro de 2026: a página abre, mas a UCI não oferece
+    // os arquivos (download de 0 bytes e API sem dados).
+    aviso:
+      'No momento, a UCI não disponibiliza os arquivos desta base. A página continua útil pela descrição e pela referência ao artigo original.',
+  },
+  {
+    id: 'household-power',
+    titulo: 'Individual Household Electric Power Consumption',
+    nomeCompleto: null,
+    icone: PlugZap,
+    cor: 'ambar',
+    tarefa: 'Regressão e séries temporais',
+    descricao:
+      'Consumo elétrico de uma residência medido minuto a minuto ao longo de quase quatro anos.',
+    instancias: '2.075.259',
+    tamanho: '19,7 MB',
+    url: 'https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption',
+    dica: 'São mais de dois milhões de linhas. Agregue por hora antes de treinar, como na base sintética de energia.',
+  },
+  {
+    id: 'gas-drift',
+    titulo: 'Gas Sensor Array Drift',
+    nomeCompleto: null,
+    icone: TestTubes,
+    cor: 'verde',
+    tarefa: 'Classificação',
+    descricao:
+      'Leituras de um conjunto de 16 sensores químicos expostos a seis gases, coletadas ao longo de 36 meses.',
+    instancias: '13.910',
+    tamanho: '9,5 MB',
+    url: 'https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset',
+    dica: 'O desvio dos sensores com o tempo é o grande desafio. Treine com os primeiros lotes e teste com os últimos.',
   },
 ];
 
@@ -337,6 +424,7 @@ export const filtrosTarefa = [
 
 export function aplicarFiltro(lista, filtro) {
   if (filtro === 'todos') return lista;
+  // Bases públicas não têm nível; ficam de fora do filtro de iniciantes.
   if (filtro === 'iniciante') return lista.filter((d) => d.nivel === 'Iniciante');
   if (filtro === 'classificacao') return lista.filter((d) => d.tarefa.toLowerCase().includes('classifica'));
   return lista.filter((d) => d.tarefa.toLowerCase().includes('regress'));

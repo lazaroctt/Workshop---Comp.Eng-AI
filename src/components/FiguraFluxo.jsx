@@ -1,9 +1,9 @@
 import { Cpu, Table2, GitBranch, TrendingUp, ArrowDown } from 'lucide-react';
 
 /**
- * Figura de abertura da página inicial.
- * Diagrama sóbrio do percurso que a turma faz no encontro, da grandeza
+ * Diagrama do percurso de um projeto com aprendizado de máquina, da grandeza
  * física medida pelo sensor até a decisão tomada com antecedência.
+ * Usado no artigo O que é aprendizado de máquina.
  */
 const ETAPAS = [
   {
@@ -31,7 +31,7 @@ const ETAPAS = [
 export default function FiguraFluxo() {
   return (
     <figure className="figura" style={{ margin: 0 }}>
-      <div className="figura-titulo">Figura 1 · Percurso do workshop</div>
+      <div className="figura-titulo">Figura · Do sensor à previsão</div>
 
       <div className="fluxo">
         {ETAPAS.map((etapa, i) => {
@@ -56,8 +56,8 @@ export default function FiguraFluxo() {
       </div>
 
       <figcaption className="figura-legenda">
-        O mesmo caminho vale para as oito bases disponíveis. Muda a grandeza medida e a pergunta,
-        não o método.
+        Cada etapa depende da anterior: sem dado organizado não há treino, e sem teste não há
+        como saber se a previsão merece confiança.
       </figcaption>
     </figure>
   );

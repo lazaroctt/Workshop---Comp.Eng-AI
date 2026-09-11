@@ -1,0 +1,17 @@
+MÍDIA DOS PROJETOS
+==================
+
+Arquivos exibidos na página Início:
+
+  city science.jpeg        foto da apresentação do pôster na SBPC
+  semende.jpeg             página do projeto SEMENDE Sustentável
+  como-estou.webp          animação em loop do aplicativo Como Estou
+  como-estou.gif           a mesma animação em GIF, reserva para navegadores antigos
+  como-estou-quadro.jpg    quadro parado, para quem reduz animações no sistema
+
+A animação foi feita a partir de "como estou.mov", o vídeo original, que
+fica nesta pasta apenas como fonte e não aparece na página.
+
+Para trocar uma foto, substitua o arquivo mantendo o nome, ou altere o campo
+foto do projeto em src/data/projetos.js. Os campos proporcao e posicao, no
+mesmo arquivo, controlam o formato do quadro e a parte da imagem que aparece.

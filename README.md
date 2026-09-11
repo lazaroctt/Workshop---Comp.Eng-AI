@@ -4,9 +4,22 @@ Plataforma educacional do **LACOP**, Laboratório de Comunicações Ópticas da 
 workshop sobre uso de inteligência artificial em dados de sensores. O tema central é aproveitar
 o que o sensor já mede para trazer previsibilidade e eficiência a projetos de engenharia.
 
-A plataforma reúne o material completo do encontro: descrição do workshop, oito bases de dados
-sintéticas em CSV prontas para download, o roteiro passo a passo do case prático com prompts
-para agentes de IA, artigos de apoio e espaços reservados para vídeos.
+A plataforma é voltada a quem estuda e tem cinco abas:
+
+| Aba | Conteúdo |
+| --- | --- |
+| **Início** (página inicial) | objetivo do workshop, o que há na plataforma, o LACOP e sua pesquisa em IA, os projetos do laboratório e o formulário de interesse na Liga |
+| **Artigos** | nove artigos em ordem de leitura, do conceito de aprendizado de máquina ao modelo rodando no ESP32, com prompts prontos dentro do texto |
+| **Bases de dados** | oito bases sintéticas em CSV para download e cinco bases públicas do UCI Machine Learning Repository |
+| **Dicas e vídeos** | o que ter em mãos, vídeos de apoio, dicas rápidas, biblioteca com todos os prompts e perguntas frequentes |
+| **Liga de IA Acadêmica** | o que é uma liga, referências no Brasil (TAIL, LIA, Turing USP), a Canastra Leagues Network e a proposta da Liga do LACOP |
+
+Na barra do desktop, a última aba aparece como "Liga de IA" para caber ao lado das marcas; o
+nome completo segue no menu móvel, no rodapé e no título da página.
+
+Endereços da versão anterior (`#/sobre`, `#/projeto`, `#/blog/...`, `#/dados`, `#/videos`) são
+redirecionados para o conteúdo equivalente, então links já compartilhados continuam funcionando.
+O endereço `#/inicio/interesse` abre o Início direto no formulário.
 
 ## Requisitos
 
@@ -36,22 +49,31 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 │   ├── datasets/                 8 arquivos CSV servidos para download
 │   └── assets/
 │       ├── uff/                  símbolo e logotipo oficiais da UFF
-│       └── lacop/                MARCA DO LACOP (inserir aqui)
+│       ├── lacop/                marca do LACOP
+│       └── projetos/             fotos e animação dos projetos do Início
 ├── scripts/
 │   └── gerar-datasets.mjs        gerador das bases sintéticas (Node puro)
 ├── src/
-│   ├── components/               cabeçalho, rodapé, cartões, modal, prompts
+│   ├── components/               cabeçalho, rodapé, cartões, modal, prompts, player
 │   │   ├── MarcaUFF.jsx          símbolo da UFF, versões azul e branca
-│   │   └── MarcaLacop.jsx        marca do laboratório e caminho do arquivo
+│   │   ├── MarcaLacop.jsx        marca do laboratório e caminho do arquivo
+│   │   ├── CartaoBasePublica.jsx cartão das bases externas, mesmo desenho das sintéticas
+│   │   ├── VideoQuadro.jsx       cartão de vídeo com o player do YouTube
+│   │   ├── FotoProjeto.jsx       foto de projeto com espaço reservado
+│   │   └── FormularioInteresse.jsx  formulário de interesse na Liga
 │   ├── data/
-│   │   ├── datasets.js           catálogo e dicionário de dados das bases
-│   │   ├── roteiro.js            etapas do case e prompts para copiar
-│   │   ├── posts.js              artigos do blog
-│   │   └── videos.js             lista de vídeos e identificadores do YouTube
-│   ├── lib/uteis.js              ganchos de cópia, revelação e leitura de CSV
-│   ├── pages/                    Sobre, Fontes de Dados, Como Realizar, Blog, Vídeos
+│   │   ├── posts.js              os nove artigos, escritos em blocos
+│   │   ├── referencias.js        catálogo de referências dos artigos, formato ABNT
+│   │   ├── prompts.js            prompts usados nos artigos e na biblioteca
+│   │   ├── datasets.js           bases sintéticas e bases públicas
+│   │   ├── projetos.js           projetos do LACOP exibidos no Início
+│   │   ├── liga.js               conteúdo da Liga e ENDEREÇO DO FORMULÁRIO (PLACEHOLDER)
+│   │   ├── videos.js             vídeos do YouTube exibidos na aba Dicas
+│   │   └── livros.js             estante de livros recomendados
+│   ├── lib/uteis.js              cópia, revelação, leitura de CSV e link do YouTube
+│   ├── pages/                    Inicio, Artigos, BasesDeDados, Dicas, LigaIA
 │   ├── styles/global.css         sistema de design completo, tema claro e escuro
-│   ├── App.jsx                   navegação em abas com rota por hash
+│   ├── App.jsx                   cinco abas com rota por hash e redirecionamentos
 │   └── main.jsx
 ├── index.html
 └── vite.config.js
@@ -104,15 +126,113 @@ arquivo `LEIA-ME.txt` com o mesmo resumo.
 O endereço de contato do rodapé é fictício e está sinalizado por comentário em
 `src/components/Rodape.jsx`.
 
-### Publicar um vídeo
+### Vídeos
 
-Abra `src/data/videos.js` e preencha o campo `youtubeId` do item desejado com o identificador
-que aparece na URL do YouTube, o trecho depois de `watch?v=`. Enquanto o campo estiver vazio, a
-página exibe um espaço reservado indicando onde o vídeo entra.
+A aba Dicas e vídeos traz oito vídeos do YouTube em três grupos, conferidos em setembro de 2026:
+todos públicos e com incorporação liberada.
+
+| Grupo | Vídeo | Canal |
+| --- | --- | --- |
+| Conceitos | Introdução ao Machine Learning (quando o if já não resolve) | TensorFlow, canal do Google |
+| Conceitos | Conceitos Básicos de Aprendizado de Máquina | UNIVESP, Prof. José Avelino Placca |
+| Conceitos | Introdução à Ciência de Dados | UNIVESP, Prof. José Eduardo Santarem Segundo |
+| Ferramentas e prática | Como usar o Google Colab para rodar Python? | Locaweb |
+| Ferramentas e prática | Primeiros passos com Scikit-Learn | Programação Dinâmica |
+| Ferramentas e prática | Árvores de Decisão com Python e Scikit-Learn | Insight Lab, UFC, Prof. Regis Pires |
+| Ética em IA | Implicações éticas e sociais da inteligência artificial | Canal USP, USP Talks com Marcelo Finger |
+| Ética em IA | Machine Learning: Ética e Privacidade | UNIVESP, Prof. José Eduardo Santarem Segundo |
+
+Para trocar ou acrescentar um vídeo, edite `src/data/videos.js`: cada item tem título,
+descrição, fonte, grupo e o link em `embedUrl`. Pode ser o link como aparece no navegador:
 
 ```js
-{ id: 'abertura', titulo: 'Abertura do workshop', youtubeId: 'AbCdEf12345' }
+embedUrl: 'https://www.youtube.com/watch?v=ID_DO_VIDEO',
 ```
+
+Também funcionam os formatos `youtu.be/ID`, `youtube.com/embed/ID` e links de playlist. O
+player usa o domínio de privacidade aprimorada do YouTube (`youtube-nocookie.com`), que só grava
+cookies depois que a pessoa inicia o vídeo. Com o campo vazio, o cartão mostra "Vídeo em breve".
+
+### Livros recomendados
+
+A mesma aba tem uma estante com doze livros em três grupos (Para começar, Para aprofundar,
+Ética e sociedade), definida em `src/data/livros.js`. As edições foram conferidas em setembro de
+2026 nas páginas das editoras; o botão "Página da editora" aparece só quando o link foi
+verificado.
+
+### Fontes dos artigos
+
+Cada artigo lista suas obras no campo `fontes` e marca os trechos que se apoiam nelas com
+`ref: ['chave']`. A página numera as citações na ordem em que aparecem e monta a seção
+Referências no fim do texto, no padrão da ABNT. Todas as obras foram conferidas em setembro de
+2026: artigos científicos pelo DOI na base da Crossref, livros e cursos nas páginas das
+universidades, editoras e repositórios.
+
+Para acrescentar uma fonte, cadastre a obra em `src/data/referencias.js` e cite a chave no
+artigo. Prefira obras com DOI ou página institucional estável.
+
+### Mídia dos projetos
+
+O Início mostra uma imagem à direita de cada projeto, com arquivos em `public/assets/projetos`:
+
+| Projeto | Arquivo | Conteúdo |
+| --- | --- | --- |
+| City Science | `city science.jpeg` | apresentação do pôster na SBPC |
+| Como Estou | `como-estou.webp` | animação em loop feita a partir de `como estou.mov` |
+| SEMENDE Sustentável | `semende.jpeg` | página do projeto |
+
+A animação do Como Estou usa o elemento `picture`: navegadores atuais recebem o WebP animado
+(0,9 MB), os muito antigos recebem `como-estou.gif` (5,8 MB) e quem ativou a redução de
+movimento no sistema vê só `como-estou-quadro.jpg`. O WebP roda sozinho e repete sem parar,
+como um GIF, com cores completas e um décimo do tamanho.
+
+Para gerar uma animação a partir de outro vídeo sem instalar nada no macOS, extraia os quadros
+com o AVFoundation (Swift) e monte o WebP com Python e Pillow. Em `src/data/projetos.js`, os
+campos `foto` ou `animacao`, `proporcao` e `posicao` controlam o arquivo, o formato do quadro e a
+parte visível da imagem.
+
+### Ativar o formulário de interesse da Liga
+
+O formulário fica pronto, mas só envia depois que você informar para onde as respostas vão. Até
+lá, aparece a frase "As inscrições abrem em breve" e o botão fica desativado. Há dois caminhos
+gratuitos.
+
+**Opção 1: Formspree**, o mais rápido. Crie uma conta em <https://formspree.io>, crie um
+formulário e copie o endereço, algo como `https://formspree.io/f/abcdwxyz`. As respostas
+chegam por e-mail e ficam no painel do Formspree.
+
+**Opção 2: Google Planilhas com aviso por e-mail** (a escolhida para a Liga). Cada inscrição vira
+uma linha na planilha e gera um e-mail para malazaro@id.uff.br. O script pronto fica em
+`scripts/liga-google-planilha.gs`; o e-mail de destino está na constante `EMAIL_DESTINO`, no topo
+dele, e não aparece no código do site.
+
+1. Com a conta Google que vai guardar as inscrições, crie uma planilha em branco.
+2. Na planilha, abra **Extensões > Apps Script**, apague o conteúdo e cole o arquivo
+   `scripts/liga-google-planilha.gs` inteiro. Salve.
+3. No seletor de funções, escolha **testar** e clique em **Executar**. O Google pede para
+   autorizar o acesso à planilha e o envio de e-mails. Depois disso, a aba Inscrições aparece
+   com uma linha de teste e chega um e-mail de aviso.
+4. Clique em **Implantar > Nova implantação**, escolha o tipo **App da Web**, execute como
+   você e deixe o acesso para **Qualquer pessoa**. Copie a URL gerada, que termina em `/exec`.
+5. Abra essa URL no navegador: deve aparecer "Formulário da Liga de IA do LACOP: endereço ativo".
+
+Se a conta institucional não oferecer a opção **Qualquer pessoa** no passo 4, é porque a
+administração do domínio restringe o acesso externo. Nesse caso, faça a instalação com uma conta
+Gmail pessoal; os avisos continuam indo para o e-mail definido em `EMAIL_DESTINO`.
+
+Ao alterar o script depois de publicado, use **Implantar > Gerenciar implantações**, edite a
+implantação existente e escolha uma nova versão. Assim a URL continua a mesma.
+
+Com o endereço em mãos, escolha uma forma de informar:
+
+* **No código:** cole em `ENDPOINT_CONFIGURADO`, no topo de `src/data/liga.js`.
+* **Na Vercel, sem mexer no código:** em Settings > Environment Variables, crie
+  `VITE_ENDPOINT_INTERESSE` com o endereço e faça um novo deploy. A variável é lida no build,
+  então só vale depois da nova publicação.
+
+O formulário envia nome, curso, período, e-mail, a resposta sobre experiência com IA ou ciência
+de dados, a origem e a data. Ele tem validação de campos e um campo invisível que descarta
+envios automáticos de robôs.
 
 ### Editar textos e conteúdo
 
@@ -120,12 +240,17 @@ Quase todo o conteúdo está isolado em `src/data`, separado da interface:
 
 | Arquivo | O que controla |
 | --- | --- |
-| `datasets.js` | bases, cenários, dicionário de colunas, dicas e filtros |
-| `roteiro.js` | preparação, oito etapas, prompts, extensões e checklist |
-| `posts.js` | artigos do blog, em blocos simples de parágrafo, lista e citação |
-| `videos.js` | vídeos e seus identificadores |
+| `posts.js` | artigos, na ordem de leitura. Cada um é uma lista de blocos: parágrafo, subtítulo, lista, passos, citação, código, prompt, dica, figura, tabela, checklist e chamada para outra aba |
+| `referencias.js` | as 34 obras citadas nos artigos, em formato ABNT, com DOI ou link e a instituição dos autores |
+| `prompts.js` | todos os prompts. Um artigo usa um prompt pelo id, e a aba Dicas lista todos agrupados |
+| `datasets.js` | bases sintéticas (cenário, dicionário, dicas) e bases públicas (descrição, tarefa, link) |
+| `videos.js` | vídeos da aba Dicas e seus links do YouTube |
+| `projetos.js` | projetos do Início: texto, selos, técnica, link e nome da foto |
+| `liga.js` | atividades de uma liga, ligas de referência, Canastra Leagues Network e endereço do formulário |
 
-Agenda do encontro, objetivos e perguntas frequentes ficam no topo de `src/pages/Sobre.jsx`.
+As dicas rápidas e as perguntas frequentes ficam no topo de `src/pages/Dicas.jsx`. Os textos do
+Início e as três frentes da Liga do LACOP ficam em `src/pages/Inicio.jsx` e
+`src/pages/LigaIA.jsx`.
 
 ### Regenerar ou alterar as bases de dados
 
@@ -158,10 +283,21 @@ primeira linha. São dados **sintéticos**, gerados a partir de padrões físico
 ruído gaussiano. Servem para ensinar o método, não para tirar conclusões sobre equipamentos
 reais.
 
-Uma árvore de decisão com profundidade 4 alcança entre 85% e 98% de acerto nessas bases, bem
-acima do palpite pela classe majoritária, e o modelo linear prevê o consumo de energia com erro
-médio próximo de 2 kWh. Existe margem de melhora em todas elas, que é justamente o espaço de
-trabalho da turma.
+### Bases públicas
+
+Links conferidos em setembro de 2026. Todas estão sob licença CC BY 4.0.
+
+| Base | Tarefa | Link |
+| --- | --- | --- |
+| UCI HAR | Classificação | <https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones> |
+| HARTH | Classificação de séries temporais | <https://archive.ics.uci.edu/dataset/779/harth> |
+| IM-AccGyro | Classificação | <https://archive.ics.uci.edu/dataset/578/intelligent+media+accelerometer+and+gyroscope+im+accgyro+dataset> |
+| Individual Household Electric Power Consumption | Regressão e séries temporais | <https://archive.ics.uci.edu/dataset/235/individual+household+electric+power+consumption> |
+| Gas Sensor Array Drift | Classificação | <https://archive.ics.uci.edu/dataset/224/gas+sensor+array+drift+dataset> |
+
+A IM-AccGyro tem página ativa, mas a UCI não oferece os arquivos (download de 0 bytes e API sem
+dados). O cartão avisa isso. Se a situação persistir, remova o item de `basesPublicas` em
+`src/data/datasets.js`.
 
 ## Publicação
 
@@ -177,6 +313,21 @@ downloads e as imagens continuem apontando para o lugar certo:
 ```bash
 npx vite build --base=/workshop-ia-sensores/
 ```
+
+## Solução de problemas
+
+**`npm run dev` ou `npm run build` param em "transforming..." e não saem disso.** O projeto fica
+em `~/Documents`, que sincroniza com o iCloud Drive. Com a opção de otimizar o armazenamento, o
+macOS tira do disco os arquivos pouco usados de `node_modules` e deixa só o marcador. A leitura
+desses arquivos fica esperando o download e o build trava. Para conferir e resolver:
+
+```bash
+ls -lO node_modules/lucide-react/dist/esm/icons | grep -c dataless   # acima de 0 indica o problema
+npm ci                                                                # reinstala as dependências
+```
+
+Para evitar que volte a acontecer, mantenha o projeto fora das pastas sincronizadas ou impeça o
+iCloud de sincronizar o `node_modules`.
 
 ## Identidade visual
 
@@ -200,6 +351,6 @@ servidos como arquivos estáticos.
 
 ## Créditos
 
-Material produzido no Laboratório de Comunicações Ópticas da Universidade Federal Fluminense
-para uso em sala de aula. O arquivo `Readme` na raiz guarda a lista original de ideias de
-projeto com hardware que deu origem a este workshop.
+Material produzido no Laboratório de Comunicações Ópticas da Universidade Federal Fluminense.
+O arquivo `Readme` na raiz guarda a lista original de ideias de projeto com hardware que deu
+origem a este workshop. Ele não aparece na plataforma.

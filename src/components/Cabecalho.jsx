@@ -21,19 +21,20 @@ export default function Cabecalho({ abas, abaAtiva, aoNavegar, tema, alternarTem
     <header className="cabecalho">
       <div className="container">
         <div className="cabecalho-interno">
-          <Marca aoClicar={() => irPara('sobre')} />
+          <Marca aoClicar={() => irPara('inicio')} />
 
           <nav className="nav-abas" aria-label="Navegação principal">
-            {abas.map(({ id, rotulo, icone: Icone }) => (
+            {abas.map(({ id, rotulo, rotuloCurto, icone: Icone }) => (
               <button
                 key={id}
                 type="button"
                 className={`aba ${abaAtiva === id ? 'ativa' : ''}`}
                 onClick={() => irPara(id)}
                 aria-current={abaAtiva === id ? 'page' : undefined}
+                title={rotuloCurto ? rotulo : undefined}
               >
                 <Icone size={16} />
-                {rotulo}
+                {rotuloCurto ?? rotulo}
               </button>
             ))}
           </nav>

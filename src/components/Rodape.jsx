@@ -38,8 +38,8 @@ export default function Rodape({ abas, aoNavegar }) {
               </span>
             </div>
             <p>
-              Material produzido para o workshop de inteligência artificial aplicada a dados de
-              sensores, com foco em previsibilidade e eficiência em projetos de engenharia.
+              Material de estudo sobre inteligência artificial aplicada a dados de sensores, com
+              foco em previsibilidade e eficiência em projetos de engenharia.
             </p>
             <p style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
               <GraduationCap size={16} /> Universidade Federal Fluminense
@@ -93,8 +93,8 @@ export default function Rodape({ abas, aoNavegar }) {
         </div>
 
         <div className="rodape-base">
-          <span>LACOP · UFF · {ano}. Conteúdo aberto para uso em sala de aula.</span>
-          <span>Bases de dados sintéticas, geradas para fins didáticos.</span>
+          <span>LACOP · UFF · {ano}. Material aberto para estudo.</span>
+          <span>Bases sintéticas para fins didáticos e bases públicas da UCI sob licença CC BY 4.0.</span>
         </div>
       </div>
     </footer>

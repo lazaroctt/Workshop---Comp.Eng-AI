@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 /**
- * Lista de perguntas e respostas com abertura em um item por vez.
- * Recebe itens no formato { pergunta, resposta }.
+ * Lista expansível com um item aberto por vez.
+ * Cada item recebe { pergunta, resposta } para texto simples, ou
+ * { pergunta, conteudo } quando o corpo é um componente, como um prompt.
  */
 export default function Acordeao({ itens }) {
   const [aberto, setAberto] = useState(null);
 
   return (
-    <div className="grade" style={{ gap: '0.7rem' }}>
+    <div className="grade" style={{ gap: '0.6rem' }}>
       {itens.map((item, i) => {
         const ativo = aberto === i;
         return (
@@ -25,7 +26,7 @@ export default function Acordeao({ itens }) {
             </button>
             {ativo && (
               <div className="passo-corpo" style={{ paddingTop: 0 }}>
-                <p style={{ marginBottom: 0 }}>{item.resposta}</p>
+                {item.conteudo ?? <p style={{ marginBottom: 0 }}>{item.resposta}</p>}
               </div>
             )}
           </div>
