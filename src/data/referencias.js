@@ -238,6 +238,64 @@ export const referencias = {
     instituicao: 'University of Illinois Urbana-Champaign',
   },
 
+  buitinck2013: {
+    autores: 'BUITINCK, L. et al.',
+    titulo: 'API design for machine learning software: experiences from the scikit-learn project',
+    obra: 'European Conference on Machine Learning and Principles and Practices of Knowledge Discovery in Databases (ECML PKDD)',
+    detalhes: ', 2013.',
+    url: 'https://arxiv.org/abs/1309.0238',
+    instituicao: 'Inria · Universidade de Amsterdã',
+  },
+  sklearnSobre: {
+    autores: 'SCIKIT-LEARN',
+    obra: 'About us: history of the project',
+    detalhes: '. Documentação oficial.',
+    url: 'https://scikit-learn.org/stable/about.html',
+    instituicao: 'Documentação técnica',
+  },
+  sklearnDepoimentos: {
+    autores: 'SCIKIT-LEARN',
+    obra: 'Who is using scikit-learn?',
+    detalhes: '. Depoimentos de empresas e instituições.',
+    url: 'https://scikit-learn.org/stable/testimonials/testimonials.html',
+    instituicao: 'Documentação técnica',
+  },
+  sklearnGithub: {
+    autores: 'SCIKIT-LEARN',
+    obra: 'Repositório do projeto no GitHub',
+    detalhes: '. Dados de contribuidores consultados em setembro de 2026.',
+    url: 'https://github.com/scikit-learn/scikit-learn',
+    instituicao: 'Dados públicos do projeto',
+  },
+  pypiEstatisticas: {
+    autores: 'PYPI STATS',
+    obra: 'scikit-learn: estatísticas de download',
+    detalhes: '. Números consultados em setembro de 2026.',
+    url: 'https://pypistats.org/packages/scikit-learn',
+    instituicao: 'Dados públicos do projeto',
+  },
+  inriaMooc: {
+    autores: 'INRIA',
+    obra: 'Machine learning in Python with scikit-learn',
+    detalhes: '. Curso aberto, mantido pela equipe que desenvolve a biblioteca.',
+    url: 'https://inria.github.io/scikit-learn-mooc/',
+    instituicao: 'Inria',
+  },
+  berkeleyData100: {
+    autores: 'UNIVERSITY OF CALIFORNIA, BERKELEY',
+    obra: 'Data 100: principles and techniques of data science',
+    detalhes: '. Notas de aula, capítulo sobre sklearn.',
+    url: 'https://ds100.org/course-notes/',
+    instituicao: 'UC Berkeley',
+  },
+  univespSklearn: {
+    autores: 'UNIVESP',
+    obra: 'Introdução à Ciência de Dados: introdução às bibliotecas Scikit-Learn, MatPlotLib e Seaborn',
+    detalhes: '. Videoaula. Professor José Eduardo Santarem Segundo.',
+    url: 'https://www.youtube.com/watch?v=J4iwm0r2iwo',
+    instituicao: 'UNIVESP',
+  },
+
   /* Hardware e sistemas embarcados ------------------------------------- */
   warden2019: {
     autores: 'WARDEN, P.; SITUNAYAKE, D.',

@@ -23,7 +23,8 @@
  */
 
 import {
-  Cpu, Table2, Split, MessageSquare, FlaskConical, Grid3x3, AlertTriangle, Scale, CircuitBoard,
+  Cpu, Table2, Split, MessageSquare, Boxes, FlaskConical, Grid3x3, AlertTriangle, Scale,
+  CircuitBoard,
 } from 'lucide-react';
 
 export const posts = [
@@ -175,6 +176,59 @@ export const posts = [
       { tipo: 'chamada', texto: 'Todos os prompts da plataforma estão reunidos em um só lugar, prontos para copiar.', rotulo: 'Abrir a biblioteca de prompts', destino: { aba: 'dicas' } },
     ],
     fontes: ['mitSloanPrompts', 'holte1993', 'kaufman2012', 'liu2023'],
+  },
+
+  /* ---------------------------------------------------------------- */
+  {
+    slug: 'o-que-e-scikit-learn',
+    titulo: 'scikit-learn: a biblioteca por trás do primeiro modelo',
+    resumo:
+      'Um projeto de férias de 2007 virou a ferramenta que bancos, laboratórios e salas de aula abrem todos os dias. O que ela faz, como se organiza e por que quase todo trabalho começa por ali.',
+    categoria: 'Ferramentas',
+    icone: Boxes,
+    cor: 'roxo',
+    conteudo: [
+      { tipo: 'p', texto: 'Peça a um agente de IA o código para treinar um modelo e olhe a primeira linha da resposta. Quase sempre aparece um import do sklearn. Vale conhecer essa ferramenta, porque ela acompanha você do exercício inicial até o sistema que roda para valer.' },
+
+      { tipo: 'h2', texto: 'De projeto de férias a padrão da área' },
+      { tipo: 'p', texto: 'O começo foi modesto. Em 2007, David Cournapeau escreveu a primeira versão durante o Google Summer of Code, programa que remunera estudantes para trabalhar em software livre. Matthieu Brucher deu sequência ao código como parte da sua tese. Em 2010, quatro pesquisadores do Inria, instituto francês de pesquisa em computação, assumiram a condução e lançaram a primeira versão pública, no dia 1º de fevereiro. De lá para cá, sai uma atualização a cada três meses, aproximadamente.', ref: ['sklearnSobre'] },
+      { tipo: 'p', texto: 'A escala de hoje chama atenção: mais de 3.500 pessoas já enviaram contribuições ao repositório, e o pacote ultrapassa 180 milhões de downloads por mês. A licença é BSD, o que libera uso comercial sem cobrança e sem obrigar ninguém a abrir o próprio código. Dados de setembro de 2026.', ref: ['sklearnGithub', 'pypiEstatisticas'] },
+
+      { tipo: 'h2', texto: 'Três verbos e uma peça de encaixe' },
+      { tipo: 'p', texto: 'A popularidade veio de uma decisão de projeto simples: todo modelo obedece à mesma interface. Você chama fit para treinar, predict para prever e transform quando a tarefa é preparar dados. Trocar uma árvore de decisão por uma floresta aleatória ou por uma regressão logística custa uma linha, já que o restante do programa permanece igual.', ref: ['buitinck2013', 'pedregosa2011'] },
+      { tipo: 'codigo', texto: 'from sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import classification_report\n\nX_treino, X_teste, y_treino, y_teste = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nmodelo = DecisionTreeClassifier(max_depth=5)\nmodelo.fit(X_treino, y_treino)\n\nprint(classification_report(y_teste, modelo.predict(X_teste)))' },
+      { tipo: 'p', texto: 'A peça de encaixe se chama Pipeline e amarra preparação e modelo em um objeto único. O recurso evita o descuido clássico de ajustar a escala antes de separar treino e teste, e garante que a mesma sequência se repita depois, quando o modelo entra em uso. O BNP Paribas Cardif, que mantém modelos do scikit-learn em produção desde 2015, trata isso como boa prática de governança.', ref: ['buitinck2013', 'sklearnDepoimentos'] },
+
+      { tipo: 'h2', texto: 'O que vem na caixa' },
+      { tipo: 'lista', itens: [
+        'Modelos de classificação, regressão e agrupamento, dos mais diretos aos conjuntos de árvores.',
+        'Preparação dos dados: padronização de escala, codificação de categorias e tratamento de valores ausentes.',
+        'Avaliação: divisão entre treino e teste, validação cruzada, busca de hiperparâmetros e um catálogo extenso de métricas.',
+        'Redução de dimensão e seleção de atributos, úteis quando o sensor produz colunas demais.',
+      ] },
+      { tipo: 'p', texto: 'Convém saber também o que fica de fora. Redes neurais profundas para imagem, áudio ou linguagem exigem outras ferramentas, feitas para placa de vídeo. O território aqui é o dos dados em tabela, justamente onde mora quase todo projeto com sensores.' },
+
+      { tipo: 'h2', texto: 'Onde ela já está rodando' },
+      { tipo: 'p', texto: 'O projeto publica uma página com relatos de quem o mantém em produção. Alguns exemplos:' },
+      { tipo: 'lista', itens: [
+        'J.P. Morgan descreve a biblioteca como parte indispensável do ferramental em Python do banco, aplicada a classificação e análise preditiva em diversas áreas.',
+        'Spotify a usa na recomendação de música, por reunir implementações sólidas que se encaixam em sistemas já existentes.',
+        'Booking.com recorre a ela em tarefas de previsão e na detecção de fraude.',
+        'Zopa, plataforma britânica de empréstimo entre pessoas, afirma que seus modelos de risco de crédito, fraude e preço se apoiam no scikit-learn, e que eles participaram da originação de ao menos 1 bilhão de libras em empréstimos.',
+        'Hugging Face conta que, mesmo com redes profundas em parte das tarefas de linguagem, ela continua sendo o feijão com arroz da rotina.',
+        'Evernote, Change.org, Otto Group e Mars aparecem na mesma lista, em trabalhos que vão da classificação de texto à cadeia de suprimentos.',
+      ], ref: ['sklearnDepoimentos'] },
+
+      { tipo: 'h2', texto: 'Nas universidades' },
+      { tipo: 'p', texto: 'O ensino seguiu o mesmo rumo. Em Berkeley, a disciplina Data 100 reserva um capítulo ao pacote. A Télécom ParisTech a adota em exercícios e trabalhos de suas disciplinas de aprendizado de máquina. O próprio Inria mantém um curso aberto e gratuito, escrito pela equipe que desenvolve o código. No Brasil, a UNIVESP dedica uma videoaula ao assunto dentro da disciplina de ciência de dados.', ref: ['berkeleyData100', 'sklearnDepoimentos', 'inriaMooc', 'univespSklearn'] },
+
+      { tipo: 'h2', texto: 'Por que isso importa para quem vem da eletrônica' },
+      { tipo: 'p', texto: 'Com o método resolvido em poucas linhas, a parte difícil muda de lugar. Sai a implementação do algoritmo e entram as perguntas que de fato decidem o resultado: os dados representam bem a situação? o alvo faz sentido? a medição foi honesta? Esse deslocamento é a maior vantagem prática de trabalhar com uma biblioteca madura.' },
+      { tipo: 'p', texto: 'Há ainda um detalhe valioso para quem mexe com hardware: os modelos daqui são pequenos. Uma árvore treinada vira um punhado de comparações, que cabem em um microcontrolador sem depender de nenhuma biblioteca externa.', ref: ['breiman2017'] },
+      { tipo: 'dica', titulo: 'A versão faz diferença', texto: 'Como surge uma atualização a cada três meses, exemplos antigos às vezes deixam de funcionar. Diante de um erro estranho, descubra qual versão está instalada com sklearn.__version__ e consulte a documentação correspondente.', ref: ['sklearnSobre'] },
+      { tipo: 'chamada', texto: 'Pronto para escrever as primeiras linhas? O passo a passo usa exatamente essa biblioteca.', rotulo: 'Ler: Seu primeiro modelo', destino: { aba: 'artigos', slug: 'seu-primeiro-modelo' } },
+    ],
+    fontes: ['sklearnSobre', 'sklearnGithub', 'pypiEstatisticas', 'buitinck2013', 'pedregosa2011', 'sklearnDepoimentos', 'berkeleyData100', 'inriaMooc', 'univespSklearn', 'breiman2017'],
   },
 
   /* ---------------------------------------------------------------- */

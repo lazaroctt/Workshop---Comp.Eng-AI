@@ -9,7 +9,7 @@ A plataforma é voltada a quem estuda e tem cinco abas:
 | Aba | Conteúdo |
 | --- | --- |
 | **Início** (página inicial) | objetivo do workshop, o que há na plataforma, o LACOP e sua pesquisa em IA, os projetos do laboratório e o formulário de interesse na Liga |
-| **Artigos** | nove artigos em ordem de leitura, do conceito de aprendizado de máquina ao modelo rodando no ESP32, com prompts prontos dentro do texto |
+| **Artigos** | dez artigos em ordem de leitura, do conceito de aprendizado de máquina ao modelo rodando no ESP32, com prompts prontos dentro do texto |
 | **Bases de dados** | oito bases sintéticas em CSV para download e cinco bases públicas do UCI Machine Learning Repository |
 | **Dicas e vídeos** | o que ter em mãos, vídeos de apoio, dicas rápidas, biblioteca com todos os prompts e perguntas frequentes |
 | **Liga de IA Acadêmica** | o que é uma liga, referências no Brasil (TAIL, LIA, Turing USP), a Canastra Leagues Network e a proposta da Liga do LACOP |
@@ -62,7 +62,7 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 │   │   ├── FotoProjeto.jsx       foto de projeto com espaço reservado
 │   │   └── FormularioInteresse.jsx  formulário de interesse na Liga
 │   ├── data/
-│   │   ├── posts.js              os nove artigos, escritos em blocos
+│   │   ├── posts.js              os dez artigos, escritos em blocos
 │   │   ├── referencias.js        catálogo de referências dos artigos, formato ABNT
 │   │   ├── prompts.js            prompts usados nos artigos e na biblioteca
 │   │   ├── datasets.js           bases sintéticas e bases públicas
@@ -239,7 +239,7 @@ Quase todo o conteúdo está isolado em `src/data`, separado da interface:
 | Arquivo | O que controla |
 | --- | --- |
 | `posts.js` | artigos, na ordem de leitura. Cada um é uma lista de blocos: parágrafo, subtítulo, lista, passos, citação, código, prompt, dica, figura, tabela, checklist e chamada para outra aba |
-| `referencias.js` | as 34 obras citadas nos artigos, em formato ABNT, com DOI ou link e a instituição dos autores |
+| `referencias.js` | as obras citadas nos artigos, em formato ABNT, com DOI ou link e a instituição dos autores |
 | `prompts.js` | todos os prompts. Um artigo usa um prompt pelo id, e a aba Dicas lista todos agrupados |
 | `datasets.js` | bases sintéticas (cenário, dicionário, dicas) e bases públicas (descrição, tarefa, link) |
 | `videos.js` | vídeos da aba Dicas e seus links do YouTube |
