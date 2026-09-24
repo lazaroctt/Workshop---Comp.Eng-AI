@@ -79,13 +79,12 @@ export default function Rodape({ abas, aoNavegar }) {
               </li>
               <li style={{ display: 'flex', gap: '0.5rem' }}>
                 <Mail size={16} style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                {/* Substitua pelo endereço oficial do laboratório. */}
-                <span>contato@lacop.uff.br</span>
+                <a href="mailto:malazaro@id.uff.br">malazaro@id.uff.br</a>
               </li>
               <li style={{ display: 'flex', gap: '0.5rem' }}>
                 <ArrowUpRight size={16} style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                <a href="https://www.uff.br" target="_blank" rel="noreferrer">
-                  uff.br
+                <a href="https://www.linkedin.com/in/lazarobrr/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
                 </a>
               </li>
             </ul>

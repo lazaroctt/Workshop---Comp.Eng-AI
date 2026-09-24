@@ -345,6 +345,7 @@ code {
 [data-tema='escuro'] .aba.ativa svg { color: var(--destaque); }
 
 .acoes-cabecalho { display: flex; align-items: center; gap: 0.4rem; }
+.marca-lacop-slot { display: flex; align-items: center; gap: 0.85rem; }
 
 .btn-icone {
   display: inline-grid;
@@ -1397,7 +1398,7 @@ select.entrada { appearance: auto; padding-block: 0; }
   .rodape-grade { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1140px) {
   .marca-lacop-slot { display: none; }
 }
 

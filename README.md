@@ -104,18 +104,16 @@ trocando de versão conforme o tema. Serve também de ícone de aba do navegador
 
 ```
 public/assets/lacop/
-├── lacop.png         versão principal, cabeçalho de fundo claro
-└── lacop-branco.png  versão clara para o rodapé azul, opcional
+├── lacop.png         versão original, para fundo claro
+└── lacop-branco.png  versão para fundo escuro, gerada a partir da original
 ```
 
-A marca aparece ao lado do símbolo da UFF, com 44 px de altura no cabeçalho e 46 px no rodapé.
+A marca fica no extremo direito do cabeçalho, com 44 px de altura, e no rodapé, com 46 px. A
+versão usada acompanha o fundo: no cabeçalho ela troca conforme o tema, e no rodapé, que é
+sempre azul escuro, a versão clara é fixa. Se o laboratório tiver uma versão oficial para fundo
+escuro, substitua `lacop-branco.png` mantendo o nome.
 
-O rodapé tem fundo azul escuro e a tipografia da marca é azul, então a leitura ficaria
-prejudicada. Sem um arquivo em versão clara, a plataforma exibe a marca original sobre uma placa
-branca, o que preserva as cores oficiais. Ao salvar `lacop-branco.png`, a placa deixa de ser
-usada e a versão clara entra no lugar.
-
-Em telas abaixo de 1200 px a marca do laboratório sai do cabeçalho para dar espaço às abas, e
+Em telas abaixo de 1140 px a marca do laboratório sai do cabeçalho para dar espaço às abas, e
 permanece no rodapé. Se a pasta ficar sem arquivo, aparece um espaço tracejado indicando a
 posição reservada, e nenhuma marca é desenhada no lugar da oficial.
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import Marca from './Marca.jsx';
+import MarcaLacop from './MarcaLacop.jsx';
 
 /**
  * Cabeçalho fixo com a identidade institucional, a navegação em abas
@@ -59,6 +60,12 @@ export default function Cabecalho({ abas, abaAtiva, aoNavegar, tema, alternarTem
             >
               {menuAberto ? <X size={18} /> : <Menu size={18} />}
             </button>
+
+            {/* Marca do laboratório no extremo direito, separada por um filete. */}
+            <span className="marca-lacop-slot">
+              <span className="marca-divisor" aria-hidden="true" />
+              <MarcaLacop altura={44} />
+            </span>
           </div>
         </div>
 
