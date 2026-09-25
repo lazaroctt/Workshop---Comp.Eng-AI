@@ -19,7 +19,7 @@ nome completo segue no menu móvel, no rodapé e no título da página.
 
 Endereços da versão anterior (`#/sobre`, `#/projeto`, `#/blog/...`, `#/dados`, `#/videos`) são
 redirecionados para o conteúdo equivalente, então links já compartilhados continuam funcionando.
-O endereço `#/inicio/interesse` abre o Início direto no formulário.
+O endereço `#/inicio/interesse` abre o Início direto na parte da Liga.
 
 ## Requisitos
 
@@ -60,7 +60,7 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 │   │   ├── CartaoBasePublica.jsx cartão das bases externas, mesmo desenho das sintéticas
 │   │   ├── VideoQuadro.jsx       cartão de vídeo com o player do YouTube
 │   │   ├── FotoProjeto.jsx       foto de projeto com espaço reservado
-│   │   └── FormularioInteresse.jsx  formulário de interesse na Liga
+│   │   └── ConviteInteresse.jsx  cartão que leva ao formulário da Liga
 │   ├── data/
 │   │   ├── posts.js              os dez artigos, escritos em blocos
 │   │   ├── referencias.js        catálogo de referências dos artigos, formato ABNT
@@ -189,48 +189,30 @@ com o AVFoundation (Swift) e monte o WebP com Python e Pillow. Em `src/data/proj
 campos `foto` ou `animacao`, `proporcao` e `posicao` controlam o arquivo, o formato do quadro e a
 parte visível da imagem.
 
-### Ativar o formulário de interesse da Liga
+### Ligar o formulário de interesse da Liga
 
-O formulário fica pronto, mas só envia depois que você informar para onde as respostas vão. Até
-lá, aparece a frase "As inscrições abrem em breve" e o botão fica desativado. Há dois caminhos
-gratuitos.
+A inscrição acontece em um formulário do Google Forms, fora do site. No Início, um cartão lista os
+campos e traz o botão que abre o formulário em outra aba. Enquanto o endereço não for informado,
+aparece a frase "As inscrições abrem em breve" e o botão fica desativado.
 
-**Opção 1: Formspree**, o mais rápido. Crie uma conta em <https://formspree.io>, crie um
-formulário e copie o endereço, algo como `https://formspree.io/f/abcdwxyz`. As respostas
-chegam por e-mail e ficam no painel do Formspree.
+1. Em <https://forms.google.com>, crie o formulário. O que está no ar chama-se "Demonstração de
+   Interesse, Liga IA" e pergunta nome, telefone, e-mail, curso, nível de experiência, áreas de
+   interesse e o que a pessoa espera da Liga.
+2. Na aba **Respostas**, use o menu de três pontos e marque **Receber notificações por e-mail de
+   novas respostas**. Para ter tudo em uma planilha, clique no ícone do Google Planilhas.
+3. Clique em **Enviar**, escolha o ícone de link e copie o endereço. A opção **Encurtar URL** gera
+   algo como `https://forms.gle/CODIGO`.
+4. Informe o endereço de uma destas maneiras:
+   * **No código:** cole em `FORMULARIO_CONFIGURADO`, no topo de `src/data/liga.js`.
+   * **Na Vercel, sem mexer no código:** em Settings > Environment Variables, crie
+     `VITE_FORMULARIO_LIGA` com o endereço e publique de novo. A variável é lida no build, então
+     só vale depois da nova publicação.
 
-**Opção 2: Google Planilhas com aviso por e-mail** (a escolhida para a Liga). Cada inscrição vira
-uma linha na planilha e gera um e-mail para malazaro@id.uff.br. O script pronto fica em
-`scripts/liga-google-planilha.gs`; o e-mail de destino está na constante `EMAIL_DESTINO`, no topo
-dele, e não aparece no código do site.
+O cartão não repete as perguntas: quem quiser vê-las abre o formulário pelo botão.
 
-1. Com a conta Google que vai guardar as inscrições, crie uma planilha em branco.
-2. Na planilha, abra **Extensões > Apps Script**, apague o conteúdo e cole o arquivo
-   `scripts/liga-google-planilha.gs` inteiro. Salve.
-3. No seletor de funções, escolha **testar** e clique em **Executar**. O Google pede para
-   autorizar o acesso à planilha e o envio de e-mails. Depois disso, a aba Inscrições aparece
-   com uma linha de teste e chega um e-mail de aviso.
-4. Clique em **Implantar > Nova implantação**, escolha o tipo **App da Web**, execute como
-   você e deixe o acesso para **Qualquer pessoa**. Copie a URL gerada, que termina em `/exec`.
-5. Abra essa URL no navegador: deve aparecer "Formulário da Liga de IA do LACOP: endereço ativo".
-
-Se a conta institucional não oferecer a opção **Qualquer pessoa** no passo 4, é porque a
-administração do domínio restringe o acesso externo. Nesse caso, faça a instalação com uma conta
-Gmail pessoal; os avisos continuam indo para o e-mail definido em `EMAIL_DESTINO`.
-
-Ao alterar o script depois de publicado, use **Implantar > Gerenciar implantações**, edite a
-implantação existente e escolha uma nova versão. Assim a URL continua a mesma.
-
-Com o endereço em mãos, escolha uma forma de informar:
-
-* **No código:** cole em `ENDPOINT_CONFIGURADO`, no topo de `src/data/liga.js`.
-* **Na Vercel, sem mexer no código:** em Settings > Environment Variables, crie
-  `VITE_ENDPOINT_INTERESSE` com o endereço e faça um novo deploy. A variável é lida no build,
-  então só vale depois da nova publicação.
-
-O formulário envia nome, curso, período, e-mail, a resposta sobre experiência com IA ou ciência
-de dados, a origem e a data. Ele tem validação de campos e um campo invisível que descarta
-envios automáticos de robôs.
+O arquivo `scripts/liga-google-planilha.gs` pertencia à versão anterior, em que o site tinha o
+próprio formulário e gravava as respostas em uma planilha por meio do Apps Script. Ele ficou fora
+de uso e pode ser apagado, assim como a implantação feita no Apps Script.
 
 ### Editar textos e conteúdo
 
@@ -244,7 +226,7 @@ Quase todo o conteúdo está isolado em `src/data`, separado da interface:
 | `datasets.js` | bases sintéticas (cenário, dicionário, dicas) e bases públicas (descrição, tarefa, link) |
 | `videos.js` | vídeos da aba Dicas e seus links do YouTube |
 | `projetos.js` | projetos do Início: texto, selos, técnica, link e nome da foto |
-| `liga.js` | atividades de uma liga, ligas de referência, Canastra Leagues Network e endereço do formulário |
+| `liga.js` | atividades de uma liga, ligas de referência, Canastra Leagues Network e link do formulário |
 
 As dicas rápidas e as perguntas frequentes ficam no topo de `src/pages/Dicas.jsx`. Os textos do
 Início e as três frentes da Liga do LACOP ficam em `src/pages/Inicio.jsx` e

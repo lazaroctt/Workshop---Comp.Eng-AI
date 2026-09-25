@@ -430,6 +430,7 @@ code {
 
 .btn-bloco { width: 100%; }
 .btn-pequeno { padding: 0.48rem 0.85rem; font-size: 0.85rem; }
+.btn-largo { width: 100%; padding: 0.85rem 1.2rem; font-size: 1rem; }
 
 .cartao {
   position: relative;
@@ -1273,7 +1274,7 @@ a.cartao.cartao-conteudo { display: flex; flex-direction: column; height: 100%; 
 .foto-reservada svg { color: var(--borda-forte); }
 .foto-reservada code { font-size: 0.74rem; }
 
-/* Formulário de interesse */
+/* Convite para o formulário de interesse */
 .formulario {
   background: var(--superficie);
   border: 1px solid var(--borda);
@@ -1282,27 +1283,20 @@ a.cartao.cartao-conteudo { display: flex; flex-direction: column; height: 100%; 
   padding: clamp(1.2rem, 3vw, 1.7rem);
 }
 .formulario h3 { font-size: 1.15rem; margin-bottom: 1.1rem; }
-.campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.95rem; }
-.campo label { font-size: 0.86rem; font-weight: 600; color: var(--texto); }
-.campo-duplo { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 0 0.9rem; }
-.entrada {
-  width: 100%;
-  font: inherit;
-  font-size: 0.95rem;
-  color: var(--texto);
-  background: var(--superficie);
-  border: 1px solid var(--borda-forte);
+.convite-interesse { display: flex; flex-direction: column; align-items: stretch; }
+.convite-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
   border-radius: var(--raio-sm);
-  padding: 0.62rem 0.75rem;
-  transition: border-color var(--transicao), box-shadow var(--transicao);
+  border: 1px solid var(--borda);
+  background: var(--fundo-alt);
+  color: var(--azul-700);
 }
-.entrada:focus { outline: none; border-color: var(--azul-600); box-shadow: 0 0 0 3px var(--azul-100); }
-.entrada[aria-invalid='true'] { border-color: var(--vinho-500); }
-.entrada:not(textarea) { height: 2.85rem; }
-select.entrada { appearance: auto; padding-block: 0; }
-.campo-erro { font-size: 0.8rem; color: var(--vinho-500); }
-[data-tema='escuro'] .campo-erro { color: #e79aa6; }
-.campo-oculto { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+[data-tema='escuro'] .convite-icone { color: var(--destaque); }
+.convite-interesse h3 { margin: 0.75rem 0 0.5rem; }
+.convite-interesse p { font-size: 0.93rem; margin-bottom: 1.15rem; }
 .form-mensagem {
   display: flex;
   align-items: center;
@@ -1314,14 +1308,10 @@ select.entrada { appearance: auto; padding-block: 0; }
   border-left: 3px solid var(--ambar-400);
   padding: 0.6rem 0.8rem;
   border-radius: var(--raio-sm);
+  margin-bottom: 0.9rem;
 }
-.form-mensagem.erro { border-left-color: var(--vinho-500); }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; }
-.form-nota { font-size: 0.78rem; color: var(--texto-fraco); margin: 0.7rem 0 0; }
-.formulario-concluido { text-align: center; }
-.formulario-concluido svg { color: var(--verde-500); margin: 0 auto 0.6rem; }
-.girando { animation: girar 900ms linear infinite; }
-@keyframes girar { to { transform: rotate(360deg); } }
+.form-nota { font-size: 0.78rem; color: var(--texto-fraco); margin: 0.9rem 0 0; }
 
 /* Liga de IA Acadêmica */
 .cartao-liga { display: flex; flex-direction: column; height: 100%; }
@@ -1404,7 +1394,6 @@ select.entrada { appearance: auto; padding-block: 0; }
 
 @media (max-width: 860px) {
   .projeto { grid-template-columns: 1fr; }
-  .campo-duplo { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 1060px) {

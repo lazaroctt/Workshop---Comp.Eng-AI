@@ -1,4 +1,11 @@
 /**
+ * FORA DE USO. A plataforma passou a usar um formulário do Google Forms, então
+ * o site não envia mais nada para este script. O arquivo fica aqui apenas como
+ * registro da versão anterior e pode ser apagado, junto com a implantação feita
+ * no Apps Script.
+ */
+
+/**
  * Recebe as inscrições do formulário "Tenho interesse na Liga", da plataforma
  * Workshop IA e Sensores (LACOP/UFF). Cada inscrição vira uma linha nesta
  * planilha e gera um aviso por e-mail.

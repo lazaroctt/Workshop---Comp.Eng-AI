@@ -1,28 +1,20 @@
 /**
- * Conteúdo da Liga de IA Acadêmica e configuração do formulário de interesse.
+ * Conteúdo da Liga de IA Acadêmica e link do formulário de interesse.
  */
 
 /* ====================================================================
- * PLACEHOLDER: endereço que recebe as respostas do formulário.
+ * PLACEHOLDER: link do Google Forms de interesse na Liga.
  * ====================================================================
- * Preencha ENDPOINT_CONFIGURADO abaixo ou defina a variável de ambiente
- * VITE_ENDPOINT_INTERESSE no painel da Vercel. Enquanto os dois estiverem
- * vazios, o formulário aparece com o aviso de que as inscrições abrem em
- * breve e o botão de envio fica desativado.
- *
- * Duas opções gratuitas, explicadas no README:
- *   Formspree       https://formspree.io/f/SEU_CODIGO
- *   Google Sheets   URL de implantação de um Apps Script, terminada em /exec
+ * Cole o endereço do formulário em FORMULARIO_CONFIGURADO abaixo, no formato
+ * https://forms.gle/CODIGO ou https://docs.google.com/forms/d/e/CODIGO/viewform
+ * Enquanto estiver vazio, a página mostra o aviso de que as inscrições abrem em
+ * breve e o botão fica desativado. Também é possível informar o endereço sem
+ * mexer no código: crie a variável VITE_FORMULARIO_LIGA no painel da Vercel e
+ * publique de novo, porque a variável é lida no build.
  */
-// Apps Script da planilha de inscrições da Liga (conta malazaro@id.uff.br).
-const ENDPOINT_CONFIGURADO = 'https://script.google.com/macros/s/AKfycbwQ2pmn4aTawGimBULekrSWhU9l_WKC28_rTJL4Rl9Y_WpNLtG5Aa4og_niYK8wNGAP/exec';
+const FORMULARIO_CONFIGURADO = 'https://forms.gle/bKzgb745HYiSzfSA7';
 
-export const ENDPOINT_INTERESSE = ENDPOINT_CONFIGURADO || import.meta.env.VITE_ENDPOINT_INTERESSE || '';
-
-export const periodos = [
-  '1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º',
-  'Acima do 10º', 'Pós-graduação',
-];
+export const FORMULARIO_LIGA = FORMULARIO_CONFIGURADO || import.meta.env.VITE_FORMULARIO_LIGA || '';
 
 /** O que costuma acontecer em uma liga acadêmica de IA. */
 export const atividadesLiga = [

@@ -6,7 +6,7 @@ import {
 import Revelar from '../components/Revelar.jsx';
 import FotoProjeto from '../components/FotoProjeto.jsx';
 import IlustracaoIA from '../components/IlustracaoIA.jsx';
-import FormularioInteresse from '../components/FormularioInteresse.jsx';
+import ConviteInteresse from '../components/ConviteInteresse.jsx';
 import { projetos, frentesPesquisa } from '../data/projetos.js';
 import { posts } from '../data/posts.js';
 import { datasets, basesPublicas } from '../data/datasets.js';
@@ -210,13 +210,13 @@ export default function Inicio({ navegar, secao }) {
                 participar de projetos como os desta página e se aproximar da pesquisa.
               </p>
               <p style={{ marginBottom: 0 }}>
-                Com ou sem experiência prévia, se o tema te interessa, deixe seu contato no
-                formulário e avisaremos quando as atividades começarem.
+                Com ou sem experiência prévia, se o tema te interessa, preencha o formulário de
+                interesse. Avisaremos você quando as atividades começarem.
               </p>
             </Revelar>
 
             <Revelar atraso={120}>
-              <FormularioInteresse />
+              <ConviteInteresse />
             </Revelar>
           </div>
 
