@@ -1,0 +1,516 @@
+{
+  "base": "ambiente_temperatura_umidade.csv",
+  "alvo": "conforto",
+  "tipo": "classificacao",
+  "entradas": [
+    "temperatura_c",
+    "umidade_pct",
+    "luminosidade_lux"
+  ],
+  "acuracia": 0.7514,
+  "piso": 0.4798,
+  "classes": [
+    "frio",
+    "confortavel",
+    "quente"
+  ],
+  "matriz_confusao": [
+    [
+      28,
+      0,
+      0
+    ],
+    [
+      31,
+      45,
+      7
+    ],
+    [
+      0,
+      5,
+      57
+    ]
+  ],
+  "amostras": [
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "confortavel"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "frio",
+      "previsto": "frio"
+    },
+    {
+      "real": "confortavel",
+      "previsto": "frio"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    },
+    {
+      "real": "quente",
+      "previsto": "quente"
+    }
+  ]
+}

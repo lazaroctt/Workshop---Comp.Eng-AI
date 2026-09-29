@@ -4,22 +4,25 @@ Plataforma educacional do **LACOP**, Laboratório de Comunicações Ópticas da 
 workshop sobre uso de inteligência artificial em dados de sensores. O tema central é aproveitar
 o que o sensor já mede para trazer previsibilidade e eficiência a projetos de engenharia.
 
-A plataforma é voltada a quem estuda e tem cinco abas:
+A plataforma é voltada a quem estuda e tem seis abas:
 
 | Aba | Conteúdo |
 | --- | --- |
 | **Início** (página inicial) | objetivo do workshop, o que há na plataforma, o LACOP e sua pesquisa em IA, os projetos do laboratório e o formulário de interesse na Liga |
 | **Artigos** | dez artigos em ordem de leitura, do conceito de aprendizado de máquina ao modelo rodando no ESP32, com prompts prontos dentro do texto |
 | **Bases de dados** | oito bases sintéticas em CSV para download e cinco bases públicas do UCI Machine Learning Repository |
+| **Meu Projeto** | leitura do resultado_projeto.json gerado no Colab, com a comparação entre o modelo e o palpite simples, matriz de confusão, gráfico de dispersão e exportação do resultado em PDF |
 | **Dicas e vídeos** | o que ter em mãos, vídeos de apoio, dicas rápidas, biblioteca com todos os prompts e perguntas frequentes |
 | **Liga de IA Acadêmica** | o que é uma liga, referências no Brasil (TAIL, LIA, Turing USP), a Canastra Leagues Network e a proposta da Liga do LACOP |
 
-Na barra do desktop, a última aba aparece como "Liga de IA" para caber ao lado das marcas; o
-nome completo segue no menu móvel, no rodapé e no título da página.
+Na barra do desktop, duas abas aparecem encurtadas para caber ao lado das marcas, "Dicas" e
+"Liga de IA". O nome completo segue no menu móvel, no rodapé e no título da página.
 
 Endereços da versão anterior (`#/sobre`, `#/projeto`, `#/blog/...`, `#/dados`, `#/videos`) são
 redirecionados para o conteúdo equivalente, então links já compartilhados continuam funcionando.
-O endereço `#/inicio/interesse` abre o Início direto na parte da Liga.
+O endereço `#/inicio/interesse` abre o Início direto na parte da Liga, e `#/meu-projeto` abre a
+leitura de resultados. O antigo `#/projeto`, da versão com roteiro, continua levando ao artigo
+correspondente, e não à aba nova.
 
 ## Requisitos
 
@@ -47,6 +50,7 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 .
 ├── public/
 │   ├── datasets/                 8 arquivos CSV servidos para download
+│   ├── exemplos/                 resultado_projeto.json de exemplo, um por tipo
 │   └── assets/
 │       ├── uff/                  símbolo e logotipo oficiais da UFF
 │       ├── lacop/                marca do LACOP
@@ -60,7 +64,16 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 │   │   ├── CartaoBasePublica.jsx cartão das bases externas, mesmo desenho das sintéticas
 │   │   ├── VideoQuadro.jsx       cartão de vídeo com o player do YouTube
 │   │   ├── FotoProjeto.jsx       foto de projeto com espaço reservado
-│   │   └── ConviteInteresse.jsx  cartão que leva ao formulário da Liga
+│   │   ├── ConviteInteresse.jsx  cartão que leva ao formulário da Liga
+│   │   ├── AreaEnvio.jsx         leitura do JSON por arrasto ou seleção
+│   │   ├── CabecalhoResultado.jsx  base, alvo e entradas do projeto enviado
+│   │   ├── ComparativoPiso.jsx   modelo contra palpite simples, com o veredito
+│   │   ├── MatrizConfusao.jsx    matriz em mapa de calor
+│   │   ├── BarraAcertos.jsx      acertos e erros das amostras
+│   │   ├── GraficoDispersao.jsx  previsto contra real, em SVG
+│   │   ├── PainelClassificacao.jsx  painel de projetos de classificação
+│   │   ├── PainelRegressao.jsx   painel de projetos de regressão
+│   │   └── ExportarPdf.jsx       campos de identificação e geração do PDF
 │   ├── data/
 │   │   ├── posts.js              os dez artigos, escritos em blocos
 │   │   ├── referencias.js        catálogo de referências dos artigos, formato ABNT
@@ -70,10 +83,14 @@ npm run datasets  # regenera os arquivos CSV em public/datasets
 │   │   ├── liga.js               conteúdo da Liga e ENDEREÇO DO FORMULÁRIO (PLACEHOLDER)
 │   │   ├── videos.js             vídeos do YouTube exibidos na aba Dicas
 │   │   └── livros.js             estante de livros recomendados
-│   ├── lib/uteis.js              cópia, revelação, leitura de CSV e link do YouTube
-│   ├── pages/                    Inicio, Artigos, BasesDeDados, Dicas, LigaIA
+│   ├── lib/
+│   │   ├── uteis.js              cópia, revelação, leitura de CSV e link do YouTube
+│   │   ├── resultado.js          leitura e conferência do resultado_projeto.json
+│   │   ├── graficosPdf.js        matriz e dispersão desenhadas em canvas para o PDF
+│   │   └── pdf.js                diagramação do documento, página a página
+│   ├── pages/                    Inicio, Artigos, BasesDeDados, MeuProjeto, Dicas, LigaIA
 │   ├── styles/global.css         sistema de design completo, tema claro e escuro
-│   ├── App.jsx                   cinco abas com rota por hash e redirecionamentos
+│   ├── App.jsx                   seis abas com rota por hash e redirecionamentos
 │   └── main.jsx
 ├── index.html
 └── vite.config.js
@@ -214,6 +231,64 @@ O arquivo `scripts/liga-google-planilha.gs` pertencia à versão anterior, em qu
 próprio formulário e gravava as respostas em uma planilha por meio do Apps Script. Ele ficou fora
 de uso e pode ser apagado, assim como a implantação feita no Apps Script.
 
+### A aba Meu Projeto
+
+A aba lê o arquivo `resultado_projeto.json` que o aluno gera no Colab e monta o painel na hora,
+dentro do navegador. Não existe servidor, upload nem armazenamento: o conteúdo é lido pela API de
+arquivos, fica na memória da página e some ao recarregar.
+
+O arquivo precisa do campo `tipo`, com o valor `classificacao` ou `regressao`. A partir dele a
+página escolhe o painel:
+
+* **Classificação:** acurácia contra o piso (o acerto de quem chuta sempre a classe mais comum),
+  a diferença em pontos percentuais, a matriz de confusão em mapa de calor e a contagem de
+  acertos e erros das amostras.
+* **Regressão:** erro médio do modelo contra o erro de prever sempre a média, com a parte do erro
+  que o modelo cortou, mais a dispersão entre o valor previsto e o real, com a diagonal da
+  previsão perfeita.
+
+Em ambos, uma frase automática diz se o resultado se distanciou o bastante do palpite simples.
+Os limites estão em `avaliarGanho`, dentro de `src/lib/resultado.js`: na classificação, dez
+pontos percentuais de vantagem contam como aprendizado claro e menos de cinco viram alerta; na
+regressão, os mesmos papéis cabem a um quarto e a um décimo do erro cortado.
+
+Arquivo fora do formato não quebra a página. `interpretarResultado` devolve o motivo e uma lista
+de conferências, que a aba mostra em uma caixa de aviso: JSON inválido, campo `tipo` ausente,
+matriz de confusão com tamanho diferente do número de classes, campos numéricos preenchidos com
+texto, entre outros.
+
+Os dois exemplos em `public/exemplos/` foram calculados a partir das bases da própria plataforma,
+com divisão entre treino e teste, e servem para conferir o painel antes de o aluno treinar o
+próprio modelo. A seção "Como o resultado precisa estar escrito", no fim da aba, abre e baixa
+cada um deles.
+
+Os gráficos são SVG escrito à mão, sem biblioteca externa, no mesmo espírito das ilustrações do
+Início. A dispersão desenha no máximo 800 pontos e avisa quando reduz a amostra.
+
+### O PDF do resultado
+
+Com o painel na tela, o aluno escreve o nome e o título do projeto e baixa um PDF em A4. O
+documento traz o cabeçalho institucional (logotipo da UFF e marca do LACOP, lidos de
+`public/assets/`), o título em destaque, o nome e a data de emissão, a ficha do projeto, a
+comparação com o piso, a frase de avaliação e, conforme o tipo, a matriz de confusão ou o
+gráfico de dispersão. No pé de cada página ficam a identificação do documento e o endereço do
+site.
+
+A geração acontece inteiramente no navegador, em `src/lib/pdf.js`, e usa o jsPDF. A biblioteca
+entra por importação dinâmica, dentro do clique, então quem apenas lê os artigos não baixa esses
+400 kB. A matriz e a dispersão são redesenhadas em canvas por `src/lib/graficosPdf.js`, com as
+mesmas cores da tela e o dobro da resolução, e entram como imagem. Essa escolha evita o
+html2canvas, que pesaria mais 200 kB e captura a tela com qualidade irregular.
+
+O texto é escrito campo a campo, e não capturado, então continua selecionável e pesquisável no
+PDF. Cada bloco só é desenhado depois de conferir se cabe no que restou da folha. Imagens que
+ficam perto do limite são reduzidas até 64% do tamanho natural para fechar a página; abaixo
+disso, o bloco inteiro desce para a página seguinte, com o título junto. Na prática, um projeto
+comum fecha em uma página.
+
+Se o nome ou o título estiverem vazios, a aba avisa qual falta e não gera nada. Se a geração
+falhar, aparece uma mensagem pedindo para tentar de novo, sem quebrar a página.
+
 ### Editar textos e conteúdo
 
 Quase todo o conteúdo está isolado em `src/data`, separado da interface:
@@ -325,9 +400,10 @@ Os tokens de cor, tipografia e espaçamento ficam no topo de `src/styles/global.
 
 ## Tecnologias
 
-React 19, Vite, lucide-react para os ícones e CSS próprio com variáveis de tema. Sem
-framework de estilo e sem dependência de backend: tudo roda no navegador, e os CSV são
-servidos como arquivos estáticos.
+React 19, Vite, lucide-react para os ícones, jsPDF para o documento da aba Meu Projeto e CSS
+próprio com variáveis de tema. Sem framework de estilo e sem dependência de backend: tudo roda
+no navegador, e os CSV são servidos como arquivos estáticos. O jsPDF só é baixado quando alguém
+pede o PDF, e os gráficos são desenhados à mão, em SVG na tela e em canvas no documento.
 
 ## Créditos
 

@@ -288,9 +288,9 @@ code {
 
 .marca-instituicao {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 600;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--texto-fraco);
   line-height: 1.6;
@@ -314,6 +314,8 @@ code {
   display: flex;
   align-items: center;
   gap: 0.1rem;
+  /* Distância mínima entre a assinatura institucional e a primeira aba. */
+  margin-left: 1.6rem;
 }
 
 .aba {
@@ -326,7 +328,7 @@ code {
   color: var(--texto-suave);
   font-size: 0.9rem;
   font-weight: 500;
-  padding: 0.6rem 0.62rem;
+  padding: 0.6rem 0.46rem;
   cursor: pointer;
   white-space: nowrap;
   transition: color var(--transicao), border-color var(--transicao);
@@ -1329,6 +1331,259 @@ a.cartao.cartao-conteudo { display: flex; flex-direction: column; height: 100%; 
 .cartao-liga .btn { margin-top: auto; align-self: flex-start; }
 .cartao-pilar .artigo-numero { display: block; margin-bottom: 0.4rem; }
 
+/* Meu Projeto: envio do resultado e painel de leitura */
+.area-envio {
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  padding: clamp(2rem, 5vw, 3.2rem) 1.5rem;
+  text-align: center;
+  background: var(--fundo-alt);
+  border: 1px dashed var(--borda-forte);
+  border-radius: var(--raio);
+  cursor: pointer;
+  transition: border-color var(--transicao), background var(--transicao);
+}
+.area-envio:hover,
+.area-envio:focus-visible { border-color: var(--azul-600); background: var(--destaque-suave); }
+.area-envio.arrastando { border-color: var(--azul-700); border-style: solid; background: var(--destaque-suave); }
+.area-envio strong { font-family: var(--fonte-titulo); font-size: 1.15rem; }
+.area-envio p { margin: 0; color: var(--texto-suave); font-size: 0.93rem; }
+.area-envio-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 0.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--borda);
+  background: var(--superficie);
+  color: var(--azul-700);
+}
+[data-tema='escuro'] .area-envio-icone { color: var(--destaque); }
+.area-envio-nota { margin-top: 0.7rem; font-size: 0.79rem; color: var(--texto-fraco); }
+.campo-arquivo { display: none; }
+.erro-arquivo { font-family: var(--fonte-mono); font-size: 0.8rem; color: var(--texto-fraco); }
+
+.resultado-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--borda);
+}
+.resultado-arquivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.84rem;
+  color: var(--texto-suave);
+}
+.resultado-arquivo svg { color: var(--azul-700); }
+[data-tema='escuro'] .resultado-arquivo svg { color: var(--destaque); }
+
+.painel-resultado { display: grid; gap: 2.4rem; }
+.painel-resultado .titulo-bloco { display: flex; align-items: center; gap: 0.5rem; }
+.painel-resultado .titulo-bloco svg { color: var(--azul-700); }
+[data-tema='escuro'] .painel-resultado .titulo-bloco svg { color: var(--destaque); }
+.nota-metrica { font-size: 0.93rem; color: var(--texto-suave); margin: -0.6rem 0 1rem; }
+
+/* Ficha com base, alvo e entradas */
+.ficha-projeto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.2rem;
+  padding: 1.3rem 1.5rem;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-left: 3px solid var(--azul-800);
+  border-radius: var(--raio);
+}
+.ficha-item { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.ficha-rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+.ficha-item strong { font-family: var(--fonte-mono); font-size: 0.92rem; word-break: break-word; }
+.ficha-nota { font-size: 0.79rem; color: var(--texto-fraco); }
+.ficha-pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+/* Comparação entre o modelo e o piso */
+.comparativo { display: grid; gap: 1.2rem; }
+.comparativo-numeros {
+  /* Flex em vez de grade: quando o último bloco quebra de linha, ele ocupa
+     a largura toda, sem deixar uma célula vazia ao lado. */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+.numero-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 190px;
+  padding: 1.35rem 1.4rem;
+  background: var(--superficie);
+  /* O filete entre os blocos vem da sombra, e não do fundo da grade, para
+     que a sobra da última linha não vire um retângulo cinza. */
+  box-shadow: 0 0 0 1px var(--borda);
+}
+.numero-bloco strong {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  line-height: 1.05;
+  color: var(--texto);
+}
+.numero-rotulo {
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+.numero-nota { font-size: 0.82rem; color: var(--texto-suave); }
+.numero-modelo { background: var(--destaque-suave); }
+.numero-modelo strong { color: var(--azul-800); }
+[data-tema='escuro'] .numero-modelo strong { color: var(--destaque); }
+.numero-ganho.tom-ok strong { color: var(--verde-500); }
+.numero-ganho.tom-info strong { color: var(--azul-700); }
+.numero-ganho.tom-atencao strong { color: var(--vinho-500); }
+[data-tema='escuro'] .numero-ganho.tom-atencao strong { color: #e79aa6; }
+[data-tema='escuro'] .numero-ganho.tom-info strong { color: var(--destaque); }
+
+/* Matriz de confusão */
+.matriz { font-variant-numeric: tabular-nums; }
+.matriz thead th { text-align: center; text-transform: none; font-size: 0.82rem; letter-spacing: 0; }
+.matriz tbody th {
+  text-align: left;
+  font-family: var(--fonte);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--texto);
+  padding: 0.55rem 0.9rem;
+  border-top: 1px solid var(--borda);
+  background: var(--superficie-2);
+  white-space: nowrap;
+}
+.matriz .celula {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--texto);
+  border-left: 1px solid var(--borda);
+}
+.matriz-canto {
+  display: table-cell;
+  font-size: 0.7rem;
+  color: var(--texto-fraco);
+  line-height: 1.5;
+}
+.matriz-canto span { display: block; }
+.matriz-canto span:first-child::after { content: ' (linhas)'; }
+.matriz-canto span:last-child::after { content: ' (colunas)'; }
+.matriz-total { text-align: center; color: var(--texto-fraco); font-size: 0.82rem; }
+.matriz tbody tr:hover td { background-image: none; }
+
+/* Barra de acertos e erros */
+.barra-acertos { display: grid; gap: 0.75rem; }
+.barra-trilho {
+  display: flex;
+  height: 30px;
+  border-radius: var(--raio-sm);
+  overflow: hidden;
+  border: 1px solid var(--borda);
+}
+.barra-parte { display: block; height: 100%; }
+.parte-acerto { background: var(--azul-700); }
+.parte-erro { background: var(--vinho-500); }
+.barra-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.2rem;
+  font-size: 0.86rem;
+  color: var(--texto-suave);
+}
+.barra-legenda span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.barra-total { color: var(--texto-fraco); }
+.ponto { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.ponto-acerto { background: var(--azul-700); }
+.ponto-erro { background: var(--vinho-500); }
+
+/* Dispersão entre previsto e real */
+.dispersao { margin: 0; }
+.dispersao svg {
+  width: 100%;
+  height: auto;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+}
+.dispersao-grade { stroke: var(--borda); stroke-width: 1; }
+.dispersao-eixo { stroke: var(--borda-forte); stroke-width: 1.4; }
+.dispersao-referencia { stroke: var(--vinho-500); stroke-width: 1.6; stroke-dasharray: 7 5; }
+.dispersao-ponto { fill: var(--azul-600); fill-opacity: 0.55; stroke: var(--azul-800); stroke-width: 0.8; }
+[data-tema='escuro'] .dispersao-ponto { fill: var(--destaque); stroke: none; fill-opacity: 0.6; }
+.dispersao-rotulo { fill: var(--texto-fraco); font-size: 12px; font-family: var(--fonte); }
+.dispersao-eixo-titulo {
+  fill: var(--texto-suave);
+  font-size: 13px;
+  font-family: var(--fonte);
+  letter-spacing: 0.04em;
+}
+.dispersao figcaption { margin-top: 0.7rem; }
+
+/* Exemplos prontos */
+.exemplos-acoes { margin-top: 1.8rem; }
+.exemplos-acoes p { font-size: 0.95rem; }
+.exemplos-botoes { display: flex; flex-wrap: wrap; gap: 0.8rem 1.4rem; }
+.exemplo-par { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+/* Exportação do resultado em PDF */
+.bloco-exportar { margin-top: 2.6rem; padding-top: 2.2rem; border-top: 1px solid var(--borda); }
+.exportar-pdf { max-width: 640px; }
+.exportar-pdf h3 { margin-bottom: 0.5rem; }
+.exportar-texto { font-size: 0.93rem; color: var(--texto-suave); margin-bottom: 1.2rem; }
+.campos-pdf {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0 1rem;
+  margin-bottom: 0.4rem;
+}
+.campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+.campo span { font-size: 0.86rem; font-weight: 600; color: var(--texto); }
+.entrada {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  height: 2.85rem;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 1px solid var(--borda-forte);
+  border-radius: var(--raio-sm);
+  padding: 0.62rem 0.75rem;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.entrada::placeholder { color: var(--texto-fraco); }
+.entrada:focus { outline: none; border-color: var(--azul-600); box-shadow: 0 0 0 3px var(--azul-100); }
+.entrada[aria-invalid='true'] { border-color: var(--vinho-500); }
+.exportar-aviso { margin-top: 1.1rem; }
+.girando { animation: girar 900ms linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+
 /* 7. Rodapé -------------------------------------------------------------- */
 
 .rodape {
@@ -1388,7 +1643,8 @@ a.cartao.cartao-conteudo { display: flex; flex-direction: column; height: 100%; 
   .rodape-grade { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 1140px) {
+/* Com seis abas, a marca do laboratório sai antes para o cabeçalho respirar. */
+@media (max-width: 1200px) {
   .marca-lacop-slot { display: none; }
 }
 

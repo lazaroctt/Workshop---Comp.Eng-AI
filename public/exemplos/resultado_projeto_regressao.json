@@ -1,0 +1,655 @@
+{
+  "base": "consumo_energia_horario.csv",
+  "alvo": "consumo_kwh",
+  "tipo": "regressao",
+  "entradas": [
+    "hora",
+    "temperatura_externa_c",
+    "ocupacao_predio",
+    "fim_de_semana"
+  ],
+  "erro_medio_modelo": 2.17,
+  "erro_medio_piso": 15.69,
+  "amostras": [
+    {
+      "real": 16.86,
+      "previsto": 14.91
+    },
+    {
+      "real": 11.53,
+      "previsto": 15.15
+    },
+    {
+      "real": 19.97,
+      "previsto": 21.95
+    },
+    {
+      "real": 14.03,
+      "previsto": 11.76
+    },
+    {
+      "real": 12.32,
+      "previsto": 15.13
+    },
+    {
+      "real": 72.29,
+      "previsto": 72.35
+    },
+    {
+      "real": 29.76,
+      "previsto": 32.33
+    },
+    {
+      "real": 39.61,
+      "previsto": 39.82
+    },
+    {
+      "real": 29.63,
+      "previsto": 30.83
+    },
+    {
+      "real": 12.13,
+      "previsto": 13.54
+    },
+    {
+      "real": 56.55,
+      "previsto": 58.78
+    },
+    {
+      "real": 8.31,
+      "previsto": 12.76
+    },
+    {
+      "real": 15.27,
+      "previsto": 14.34
+    },
+    {
+      "real": 14.84,
+      "previsto": 14.09
+    },
+    {
+      "real": 69.89,
+      "previsto": 66.48
+    },
+    {
+      "real": 19.55,
+      "previsto": 20.06
+    },
+    {
+      "real": 61.15,
+      "previsto": 55.41
+    },
+    {
+      "real": 12.56,
+      "previsto": 14.02
+    },
+    {
+      "real": 53.65,
+      "previsto": 57.44
+    },
+    {
+      "real": 14.21,
+      "previsto": 9.53
+    },
+    {
+      "real": 12.02,
+      "previsto": 15.2
+    },
+    {
+      "real": 38.5,
+      "previsto": 37.42
+    },
+    {
+      "real": 37.31,
+      "previsto": 38.07
+    },
+    {
+      "real": 25.69,
+      "previsto": 22.69
+    },
+    {
+      "real": 23.52,
+      "previsto": 22.69
+    },
+    {
+      "real": 18.13,
+      "previsto": 20.73
+    },
+    {
+      "real": 16.09,
+      "previsto": 12.91
+    },
+    {
+      "real": 14.58,
+      "previsto": 10.27
+    },
+    {
+      "real": 22.41,
+      "previsto": 20.73
+    },
+    {
+      "real": 13.59,
+      "previsto": 16.77
+    },
+    {
+      "real": 21.26,
+      "previsto": 26.64
+    },
+    {
+      "real": 33.42,
+      "previsto": 35.03
+    },
+    {
+      "real": 24.05,
+      "previsto": 22.1
+    },
+    {
+      "real": 61.94,
+      "previsto": 60.39
+    },
+    {
+      "real": 15.17,
+      "previsto": 11.8
+    },
+    {
+      "real": 24.17,
+      "previsto": 25.47
+    },
+    {
+      "real": 61.18,
+      "previsto": 63.62
+    },
+    {
+      "real": 43.13,
+      "previsto": 42.0
+    },
+    {
+      "real": 52.56,
+      "previsto": 49.2
+    },
+    {
+      "real": 8.21,
+      "previsto": 12.14
+    },
+    {
+      "real": 37.48,
+      "previsto": 38.84
+    },
+    {
+      "real": 16.21,
+      "previsto": 13.59
+    },
+    {
+      "real": 21.41,
+      "previsto": 24.94
+    },
+    {
+      "real": 20.87,
+      "previsto": 21.28
+    },
+    {
+      "real": 26.77,
+      "previsto": 25.97
+    },
+    {
+      "real": 15.07,
+      "previsto": 16.09
+    },
+    {
+      "real": 19.45,
+      "previsto": 19.19
+    },
+    {
+      "real": 50.12,
+      "previsto": 53.2
+    },
+    {
+      "real": 56.46,
+      "previsto": 54.59
+    },
+    {
+      "real": 65.61,
+      "previsto": 64.71
+    },
+    {
+      "real": 20.53,
+      "previsto": 20.21
+    },
+    {
+      "real": 12.82,
+      "previsto": 16.12
+    },
+    {
+      "real": 27.36,
+      "previsto": 26.48
+    },
+    {
+      "real": 57.73,
+      "previsto": 56.64
+    },
+    {
+      "real": 22.86,
+      "previsto": 20.73
+    },
+    {
+      "real": 29.4,
+      "previsto": 26.82
+    },
+    {
+      "real": 51.83,
+      "previsto": 52.51
+    },
+    {
+      "real": 20.35,
+      "previsto": 23.55
+    },
+    {
+      "real": 18.01,
+      "previsto": 21.58
+    },
+    {
+      "real": 32.58,
+      "previsto": 28.84
+    },
+    {
+      "real": 64.84,
+      "previsto": 64.06
+    },
+    {
+      "real": 15.75,
+      "previsto": 14.93
+    },
+    {
+      "real": 14.32,
+      "previsto": 9.14
+    },
+    {
+      "real": 16.46,
+      "previsto": 15.59
+    },
+    {
+      "real": 14.64,
+      "previsto": 9.64
+    },
+    {
+      "real": 15.67,
+      "previsto": 12.17
+    },
+    {
+      "real": 13.24,
+      "previsto": 15.23
+    },
+    {
+      "real": 65.05,
+      "previsto": 64.45
+    },
+    {
+      "real": 17.38,
+      "previsto": 9.9
+    },
+    {
+      "real": 23.81,
+      "previsto": 19.02
+    },
+    {
+      "real": 66.13,
+      "previsto": 66.4
+    },
+    {
+      "real": 58.29,
+      "previsto": 58.0
+    },
+    {
+      "real": 53.57,
+      "previsto": 52.64
+    },
+    {
+      "real": 54.19,
+      "previsto": 56.33
+    },
+    {
+      "real": 64.33,
+      "previsto": 62.0
+    },
+    {
+      "real": 28.22,
+      "previsto": 27.03
+    },
+    {
+      "real": 19.08,
+      "previsto": 19.42
+    },
+    {
+      "real": 24.35,
+      "previsto": 25.32
+    },
+    {
+      "real": 27.08,
+      "previsto": 27.15
+    },
+    {
+      "real": 29.53,
+      "previsto": 29.21
+    },
+    {
+      "real": 14.19,
+      "previsto": 16.39
+    },
+    {
+      "real": 11.54,
+      "previsto": 14.18
+    },
+    {
+      "real": 55.55,
+      "previsto": 60.04
+    },
+    {
+      "real": 14.32,
+      "previsto": 17.27
+    },
+    {
+      "real": 40.6,
+      "previsto": 40.11
+    },
+    {
+      "real": 18.08,
+      "previsto": 17.78
+    },
+    {
+      "real": 23.76,
+      "previsto": 25.22
+    },
+    {
+      "real": 12.4,
+      "previsto": 15.0
+    },
+    {
+      "real": 11.81,
+      "previsto": 9.93
+    },
+    {
+      "real": 12.93,
+      "previsto": 13.12
+    },
+    {
+      "real": 16.37,
+      "previsto": 14.34
+    },
+    {
+      "real": 15.68,
+      "previsto": 10.34
+    },
+    {
+      "real": 15.49,
+      "previsto": 13.7
+    },
+    {
+      "real": 51.34,
+      "previsto": 47.25
+    },
+    {
+      "real": 33.07,
+      "previsto": 34.15
+    },
+    {
+      "real": 38.77,
+      "previsto": 35.87
+    },
+    {
+      "real": 12.29,
+      "previsto": 13.82
+    },
+    {
+      "real": 43.66,
+      "previsto": 41.44
+    },
+    {
+      "real": 19.66,
+      "previsto": 20.96
+    },
+    {
+      "real": 12.11,
+      "previsto": 16.87
+    },
+    {
+      "real": 14.53,
+      "previsto": 20.95
+    },
+    {
+      "real": 10.9,
+      "previsto": 14.52
+    },
+    {
+      "real": 17.45,
+      "previsto": 15.97
+    },
+    {
+      "real": 31.18,
+      "previsto": 31.11
+    },
+    {
+      "real": 10.9,
+      "previsto": 11.3
+    },
+    {
+      "real": 61.94,
+      "previsto": 62.17
+    },
+    {
+      "real": 14.29,
+      "previsto": 13.26
+    },
+    {
+      "real": 64.47,
+      "previsto": 63.4
+    },
+    {
+      "real": 35.33,
+      "previsto": 33.73
+    },
+    {
+      "real": 23.53,
+      "previsto": 25.06
+    },
+    {
+      "real": 14.55,
+      "previsto": 13.93
+    },
+    {
+      "real": 22.67,
+      "previsto": 25.42
+    },
+    {
+      "real": 67.52,
+      "previsto": 66.98
+    },
+    {
+      "real": 13.09,
+      "previsto": 11.51
+    },
+    {
+      "real": 26.6,
+      "previsto": 26.22
+    },
+    {
+      "real": 43.18,
+      "previsto": 47.9
+    },
+    {
+      "real": 60.12,
+      "previsto": 61.24
+    },
+    {
+      "real": 22.24,
+      "previsto": 22.42
+    },
+    {
+      "real": 11.22,
+      "previsto": 16.44
+    },
+    {
+      "real": 13.93,
+      "previsto": 11.78
+    },
+    {
+      "real": 30.21,
+      "previsto": 31.45
+    },
+    {
+      "real": 40.31,
+      "previsto": 43.53
+    },
+    {
+      "real": 15.78,
+      "previsto": 16.01
+    },
+    {
+      "real": 42.77,
+      "previsto": 44.85
+    },
+    {
+      "real": 12.45,
+      "previsto": 10.94
+    },
+    {
+      "real": 12.34,
+      "previsto": 13.07
+    },
+    {
+      "real": 73.0,
+      "previsto": 67.07
+    },
+    {
+      "real": 37.18,
+      "previsto": 35.71
+    },
+    {
+      "real": 29.57,
+      "previsto": 28.45
+    },
+    {
+      "real": 23.61,
+      "previsto": 24.11
+    },
+    {
+      "real": 23.06,
+      "previsto": 24.38
+    },
+    {
+      "real": 19.51,
+      "previsto": 20.38
+    },
+    {
+      "real": 28.53,
+      "previsto": 32.45
+    },
+    {
+      "real": 69.31,
+      "previsto": 68.14
+    },
+    {
+      "real": 14.29,
+      "previsto": 15.2
+    },
+    {
+      "real": 14.01,
+      "previsto": 14.04
+    },
+    {
+      "real": 14.16,
+      "previsto": 13.8
+    },
+    {
+      "real": 21.15,
+      "previsto": 28.19
+    },
+    {
+      "real": 63.14,
+      "previsto": 65.17
+    },
+    {
+      "real": 16.5,
+      "previsto": 16.91
+    },
+    {
+      "real": 36.1,
+      "previsto": 38.09
+    },
+    {
+      "real": 58.54,
+      "previsto": 60.36
+    },
+    {
+      "real": 24.06,
+      "previsto": 22.64
+    },
+    {
+      "real": 37.3,
+      "previsto": 36.59
+    },
+    {
+      "real": 13.96,
+      "previsto": 16.0
+    },
+    {
+      "real": 55.94,
+      "previsto": 56.42
+    },
+    {
+      "real": 15.45,
+      "previsto": 18.26
+    },
+    {
+      "real": 14.15,
+      "previsto": 8.51
+    },
+    {
+      "real": 15.55,
+      "previsto": 18.75
+    },
+    {
+      "real": 12.58,
+      "previsto": 14.9
+    },
+    {
+      "real": 15.42,
+      "previsto": 13.31
+    },
+    {
+      "real": 14.14,
+      "previsto": 17.68
+    },
+    {
+      "real": 16.52,
+      "previsto": 17.43
+    },
+    {
+      "real": 25.33,
+      "previsto": 28.9
+    },
+    {
+      "real": 29.07,
+      "previsto": 32.57
+    },
+    {
+      "real": 25.73,
+      "previsto": 25.19
+    },
+    {
+      "real": 57.31,
+      "previsto": 53.72
+    },
+    {
+      "real": 35.86,
+      "previsto": 32.31
+    },
+    {
+      "real": 45.69,
+      "previsto": 47.83
+    },
+    {
+      "real": 29.28,
+      "previsto": 28.59
+    }
+  ]
+}

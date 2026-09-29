@@ -1,0 +1,9 @@
+PDFs gerados pela própria aba Meu Projeto, para conferência antes de publicar.
+
+1-classificacao.pdf             exemplo de classificação da pasta public/exemplos
+2-regressao.pdf                 exemplo de regressão da pasta public/exemplos
+3-seis-classes-modelo-fraco.pdf seis classes e ganho pequeno sobre o piso, para ver
+                                a matriz larga e o tom de alerta
+4-regressao-sem-amostras.pdf    regressão sem o campo amostras, sem gráfico
+
+Esta pasta fica fora de public, então não vai para o site. Pode apagar depois da conferência.
