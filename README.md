@@ -237,9 +237,9 @@ A aba abre em dois passos. No passo 1 fica o prompt pronto que o aluno cola na i
 artificial do Colab, com botão de copiar, e que faz o agente escrever a célula que gera e baixa o
 `resultado_projeto.json`. No passo 2 fica a área de envio desse arquivo. O prompt é o
 `gerar-resultado-json`, guardado com os demais em `src/data/prompts.js`, então aparece também na
-biblioteca da aba Dicas, no grupo Interpretar. Ele não pede os campos `base` e `alvo`, que são
-opcionais: sem eles a ficha do projeto mostra "não informada no arquivo" e o resto do painel
-funciona igual.
+biblioteca da aba Dicas, no grupo Interpretar. Arquivos antigos, gerados antes de o prompt
+pedir `base` e `alvo`, continuam funcionando: esses dois campos são opcionais, e sem eles a ficha
+do projeto mostra "não informada no arquivo".
 
 A aba lê o arquivo `resultado_projeto.json` e monta o painel na hora, dentro do navegador. Não existe servidor, upload nem armazenamento: o conteúdo é lido pela API de
 arquivos, fica na memória da página e some ao recarregar.
