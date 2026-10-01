@@ -1584,6 +1584,47 @@ a.cartao.cartao-conteudo { display: flex; flex-direction: column; height: 100%; 
 .girando { animation: girar 900ms linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
 
+/* Dois passos da aba Meu Projeto: pedir o arquivo e enviar o arquivo */
+.etapas { position: relative; padding-left: 3.4rem; }
+.etapas::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: var(--borda);
+}
+.etapa { position: relative; margin-bottom: 2.6rem; }
+.etapa:last-child { margin-bottom: 0; }
+.etapa-numero {
+  position: absolute;
+  left: -3.4rem;
+  top: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--azul-800);
+  background: var(--fundo);
+  border: 1px solid var(--borda-forte);
+}
+[data-tema='escuro'] .etapa-numero { color: var(--destaque); }
+.etapa h3 { font-size: 1.12rem; margin: 0.1rem 0 0.45rem; }
+.etapa > p { font-size: 0.95rem; color: var(--texto-suave); max-width: 72ch; margin-bottom: 1.1rem; }
+/* O prompt desta aba é longo, então a caixa mostra mais linhas antes de rolar. */
+.etapa .prompt pre { max-height: 420px; }
+
+@media (max-width: 620px) {
+  .etapas { padding-left: 0; }
+  .etapas::before { display: none; }
+  .etapa-numero { position: static; margin-bottom: 0.7rem; }
+}
+
 /* 7. Rodapé -------------------------------------------------------------- */
 
 .rodape {

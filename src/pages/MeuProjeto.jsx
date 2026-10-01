@@ -4,13 +4,18 @@ import { FileJson, RefreshCw, Download } from 'lucide-react';
 import Revelar from '../components/Revelar.jsx';
 import Aviso from '../components/Aviso.jsx';
 import AreaEnvio from '../components/AreaEnvio.jsx';
+import CaixaPrompt from '../components/CaixaPrompt.jsx';
 import PainelClassificacao from '../components/PainelClassificacao.jsx';
 import PainelRegressao from '../components/PainelRegressao.jsx';
 import ExportarPdf from '../components/ExportarPdf.jsx';
 import { interpretarResultado } from '../lib/resultado.js';
+import { prompts } from '../data/prompts.js';
 
 /** Endereço dos arquivos de exemplo, servidos pela pasta public. */
 const caminhoExemplo = (arquivo) => `${import.meta.env.BASE_URL}exemplos/${arquivo}`;
+
+/** Prompt que faz o agente do Colab gerar o arquivo no formato desta página. */
+const PROMPT = prompts['gerar-resultado-json'];
 
 const EXEMPLOS = [
   { arquivo: 'resultado_projeto_classificacao.json', rotulo: 'exemplo de classificação' },
@@ -93,17 +98,36 @@ export default function MeuProjeto() {
             <span className="olho">Meu projeto</span>
             <h2>Veja o resultado do seu modelo</h2>
             <p>
-              Ao final do notebook do Colab, seu código salva um arquivo chamado
-              resultado_projeto.json. Envie esse arquivo aqui e a página monta o painel com a
+              Em dois passos, sem escrever código: peça o arquivo do resultado à inteligência
+              artificial do Colab e envie esse arquivo aqui. A página monta o painel com a
               comparação entre o seu modelo e o palpite mais simples possível, que é o teste que
               revela se houve aprendizado de verdade.
             </p>
           </Revelar>
 
           {!resultado && (
-            <Revelar>
-              <AreaEnvio aoLer={aoLer} aoFalhar={aoFalhar} />
-            </Revelar>
+            <div className="etapas">
+              <Revelar className="etapa">
+                <span className="etapa-numero" aria-hidden="true">1</span>
+                <h3>Passo 1: gere o arquivo do seu projeto</h3>
+                <p>
+                  Com o modelo já treinado e avaliado, copie o prompt abaixo e cole na inteligência
+                  artificial do seu notebook no Colab. Ela monta a célula que cria o
+                  resultado_projeto.json e baixa o arquivo para o seu computador.
+                </p>
+                <CaixaPrompt titulo={PROMPT.titulo} texto={PROMPT.texto} />
+              </Revelar>
+
+              <Revelar className="etapa" atraso={80}>
+                <span className="etapa-numero" aria-hidden="true">2</span>
+                <h3>Passo 2: envie o arquivo gerado</h3>
+                <p>
+                  Com o resultado_projeto.json na máquina, traga o arquivo para cá. A leitura é
+                  imediata e acontece no seu navegador.
+                </p>
+                <AreaEnvio aoLer={aoLer} aoFalhar={aoFalhar} />
+              </Revelar>
+            </div>
           )}
 
           {erro && (
