@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import { House, BookOpen, Database, FlaskConical, Lightbulb, Users } from 'lucide-react';
+import { House, Route, BookOpen, Database, FlaskConical, Lightbulb, Users } from 'lucide-react';
 
+import Abertura from './components/Abertura.jsx';
 import Cabecalho from './components/Cabecalho.jsx';
 import Rodape from './components/Rodape.jsx';
 import Inicio from './pages/Inicio.jsx';
+import Trilha from './pages/Trilha.jsx';
 import Artigos from './pages/Artigos.jsx';
 import BasesDeDados from './pages/BasesDeDados.jsx';
 import MeuProjeto from './pages/MeuProjeto.jsx';
@@ -13,8 +15,9 @@ import LigaIA from './pages/LigaIA.jsx';
 /** Abas da navegação principal, na ordem em que aparecem no cabeçalho. */
 const ABAS = [
   { id: 'inicio', rotulo: 'Início', icone: House },
+  { id: 'trilha', rotulo: 'Trilha', icone: Route },
   { id: 'artigos', rotulo: 'Artigos', icone: BookOpen },
-  { id: 'bases', rotulo: 'Bases de dados', icone: Database },
+  { id: 'bases', rotulo: 'Bases de dados', rotuloCurto: 'Bases', icone: Database },
   { id: 'meu-projeto', rotulo: 'Meu Projeto', icone: FlaskConical },
   { id: 'dicas', rotulo: 'Dicas e vídeos', rotuloCurto: 'Dicas', icone: Lightbulb },
   // O rótulo curto aparece só na barra do desktop, onde o espaço é disputado.
@@ -39,7 +42,8 @@ const ROTAS_ANTIGAS = {
 
 /**
  * Lê o endereço atual no formato #/aba/parametro.
- * Nos artigos, o parâmetro abre um texto específico; no Início, rola até
+ * Nos artigos, o parâmetro abre um texto específico; na trilha, abre a
+ * página de um módulo, como #/trilha/leitura-critica; no Início, rola até
  * uma seção da página, como #/inicio/interesse.
  */
 function lerRota() {
@@ -56,21 +60,24 @@ function lerRota() {
 }
 
 /**
- * Define o tema inicial. O padrão da plataforma é o tema claro, que é a
- * identidade principal. O modo escuro existe como alternativa e só entra
- * quando a pessoa escolhe pelo botão do cabeçalho.
+ * A tela de entrada aparece uma vez por visita: depois do clique, a sessão
+ * do navegador lembra que a pessoa já entrou e a navegação entre abas segue
+ * direto. Sem armazenamento, a tela aparece e o botão continua liberando o
+ * site normalmente.
  */
-function temaInicial() {
+const CHAVE_ENTRADA = 'workshop-entrou';
+
+function jaEntrou() {
   try {
-    return localStorage.getItem('tema-workshop') === 'escuro' ? 'escuro' : 'claro';
+    return sessionStorage.getItem(CHAVE_ENTRADA) === '1';
   } catch {
-    return 'claro';
+    return false;
   }
 }
 
 export default function App() {
   const [rota, setRota] = useState(lerRota);
-  const [tema, setTema] = useState(temaInicial);
+  const [entrou, setEntrou] = useState(jaEntrou);
 
   // Mantém o estado sincronizado com o botão de voltar do navegador e
   // leva a leitura para o topo sempre que o endereço muda.
@@ -92,23 +99,32 @@ export default function App() {
     }
   }, [rota]);
 
+  // Enquanto a tela de entrada está aberta, a página de trás não rola.
   useEffect(() => {
-    document.documentElement.dataset.tema = tema;
+    if (entrou) return undefined;
+    const anterior = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = anterior;
+    };
+  }, [entrou]);
+
+  const entrar = useCallback(() => {
     try {
-      localStorage.setItem('tema-workshop', tema);
+      sessionStorage.setItem(CHAVE_ENTRADA, '1');
     } catch {
-      /* Sem armazenamento, o tema vale apenas para esta visita. */
+      /* Sem armazenamento, a tela volta a aparecer na próxima visita. */
     }
-  }, [tema]);
+    setEntrou(true);
+  }, []);
 
   const navegar = useCallback((aba, parametro) => {
     window.location.hash = parametro ? `/${aba}/${parametro}` : `/${aba}`;
   }, []);
 
-  const alternarTema = () => setTema((t) => (t === 'escuro' ? 'claro' : 'escuro'));
-
   const paginas = {
     inicio: <Inicio navegar={navegar} secao={rota.parametro} />,
+    trilha: <Trilha navegar={navegar} slug={rota.parametro} />,
     artigos: <Artigos navegar={navegar} slug={rota.parametro} />,
     bases: <BasesDeDados navegar={navegar} />,
     'meu-projeto': <MeuProjeto />,
@@ -118,19 +134,18 @@ export default function App() {
 
   return (
     <>
-      <Cabecalho
-        abas={ABAS}
-        abaAtiva={rota.aba}
-        aoNavegar={navegar}
-        tema={tema}
-        alternarTema={alternarTema}
-      />
+      {!entrou && <Abertura aoEntrar={entrar} />}
 
-      <main key={rota.aba + (rota.parametro ?? '')} style={{ animation: 'aparecer 400ms ease' }}>
-        {paginas[rota.aba]}
-      </main>
+      {/* O site já fica montado por trás da entrada, mas fora do alcance do teclado. */}
+      <div inert={!entrou} aria-hidden={!entrou || undefined}>
+        <Cabecalho abas={ABAS} abaAtiva={rota.aba} aoNavegar={navegar} />
 
-      <Rodape abas={ABAS} aoNavegar={navegar} />
+        <main key={rota.aba + (rota.parametro ?? '')} style={{ animation: 'aparecer 400ms ease' }}>
+          {paginas[rota.aba]}
+        </main>
+
+        <Rodape abas={ABAS} aoNavegar={navegar} />
+      </div>
     </>
   );
 }

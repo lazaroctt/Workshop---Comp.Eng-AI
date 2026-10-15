@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Marca from './Marca.jsx';
 import MarcaLacop from './MarcaLacop.jsx';
 
 /**
- * Cabeçalho fixo com a identidade institucional, a navegação em abas
- * e o seletor de tema. Em telas estreitas as abas viram um menu vertical.
+ * Cabeçalho fixo com a identidade institucional e a navegação em abas.
+ * Em telas estreitas as abas viram um menu vertical.
  */
-export default function Cabecalho({ abas, abaAtiva, aoNavegar, tema, alternarTema }) {
+export default function Cabecalho({ abas, abaAtiva, aoNavegar }) {
   const [menuAberto, setMenuAberto] = useState(false);
 
   // Fecha o menu ao trocar de aba, evitando que ele fique aberto na navegação.
@@ -41,16 +41,6 @@ export default function Cabecalho({ abas, abaAtiva, aoNavegar, tema, alternarTem
           </nav>
 
           <div className="acoes-cabecalho">
-            <button
-              type="button"
-              className="btn-icone"
-              onClick={alternarTema}
-              aria-label={tema === 'escuro' ? 'Usar tema claro' : 'Usar tema escuro'}
-              title={tema === 'escuro' ? 'Tema claro' : 'Tema escuro'}
-            >
-              {tema === 'escuro' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-
             <button
               type="button"
               className="btn-icone botao-menu"

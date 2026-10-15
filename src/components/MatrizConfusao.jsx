@@ -3,10 +3,10 @@
  * e cada coluna, a classe que o modelo previu. A diagonal guarda os acertos.
  */
 
-/** Azul institucional para os acertos, vinho para as confusões. */
+/** Verde de fósforo para os acertos, vermelho para as confusões. */
 const cor = (acerto, intensidade) => {
-  const base = acerto ? '29, 66, 118' : '138, 61, 74';
-  const alfa = (acerto ? 0.1 : 0.08) + intensidade * (acerto ? 0.72 : 0.5);
+  const base = acerto ? '94, 230, 160' : '239, 107, 115';
+  const alfa = (acerto ? 0.08 : 0.06) + intensidade * (acerto ? 0.6 : 0.42);
   return `rgba(${base}, ${alfa.toFixed(3)})`;
 };
 
@@ -44,7 +44,7 @@ export default function MatrizConfusao({ classes, matriz }) {
                       className={acerto ? 'celula acerto' : 'celula erro'}
                       style={{
                         background: cor(acerto, intensidade),
-                        color: intensidade > 0.55 ? '#ffffff' : undefined,
+                        color: acerto && intensidade > 0.55 ? '#04110b' : undefined,
                       }}
                       title={acerto
                         ? `${valor} exemplos de ${classes[i]} foram classificados corretamente`

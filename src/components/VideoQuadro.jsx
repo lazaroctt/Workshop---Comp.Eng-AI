@@ -9,7 +9,7 @@ import { paraEmbedYouTube } from '../lib/uteis.js';
  * No servidor de desenvolvimento, uma linha extra indica o arquivo a editar,
  * para facilitar a manutenção sem expor esse detalhe na versão publicada.
  */
-export default function VideoQuadro({ video }) {
+export default function VideoQuadro({ video, arquivo = 'src/data/videos.js' }) {
   const { titulo, descricao, tema, fonte, embedUrl } = video;
   const embed = paraEmbedYouTube(embedUrl);
   const linkInvalido = Boolean(embedUrl && embedUrl.trim()) && !embed;
@@ -34,7 +34,7 @@ export default function VideoQuadro({ video }) {
               <span style={{ fontSize: '0.8rem', maxWidth: '36ch' }}>
                 {linkInvalido ? 'Link não reconhecido como YouTube. ' : 'Placeholder: '}
                 preencha <code>embedUrl</code> do vídeo <code>{video.id}</code> em{' '}
-                <code>src/data/videos.js</code>
+                <code>{arquivo}</code>
               </span>
             )}
           </div>

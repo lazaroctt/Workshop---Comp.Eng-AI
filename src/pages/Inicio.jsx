@@ -7,6 +7,7 @@ import Revelar from '../components/Revelar.jsx';
 import FotoProjeto from '../components/FotoProjeto.jsx';
 import IlustracaoIA from '../components/IlustracaoIA.jsx';
 import ConviteInteresse from '../components/ConviteInteresse.jsx';
+import ResumoTrilha from '../components/ResumoTrilha.jsx';
 import { projetos, frentesPesquisa } from '../data/projetos.js';
 import { posts } from '../data/posts.js';
 import { datasets, basesPublicas } from '../data/datasets.js';
@@ -66,8 +67,8 @@ export default function Inicio({ navegar, secao }) {
               bibliotecas prontas e com a ajuda de agentes de IA.
             </p>
             <div className="hero-acoes">
-              <button type="button" className="btn btn-primario" onClick={() => navegar('artigos')}>
-                Começar pelos artigos <ArrowRight size={17} />
+              <button type="button" className="btn btn-primario" onClick={() => navegar('trilha')}>
+                Começar pela trilha <ArrowRight size={17} />
               </button>
               <button type="button" className="btn btn-secundario" onClick={() => navegar('bases')}>
                 <Database size={17} /> Ver as bases de dados
@@ -77,6 +78,9 @@ export default function Inicio({ navegar, secao }) {
           <IlustracaoIA />
         </div>
       </section>
+
+      {/* Trilha e progresso do aluno ------------------------------------ */}
+      <ResumoTrilha navegar={navegar} />
 
       {/* O que tem na plataforma ----------------------------------------- */}
       <section className="secao">
