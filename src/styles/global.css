@@ -2348,6 +2348,8 @@ thead th { font-family: var(--fonte-mono); }
 .prompt-topo { background: transparent; border-bottom-color: var(--borda); }
 .prompt-topo strong { font-family: var(--fonte-mono); font-weight: 500; letter-spacing: 0.03em; }
 .btn-copiar { font-family: var(--fonte-mono); background: transparent; letter-spacing: 0.04em; }
+/* Código não quebra linha: a indentação do Python precisa ficar legível. */
+.prompt-codigo pre { white-space: pre; overflow-x: auto; word-break: normal; max-height: 460px; }
 .btn-copiar:hover { color: var(--ambar-400); border-color: var(--ambar-400); }
 .btn-copiar.copiado { color: var(--fosforo); border-color: var(--fosforo); }
 

@@ -11,7 +11,10 @@
  *              e, se quiser, uma lista com marcadores logo depois deles.
  *              Para negrito, envolva o trecho em asteriscos duplos: **assim**.
  *              Para link, use [texto do link](https://endereço). As duas
- *              marcações também valem no lide.
+ *              marcações também valem no lide. Uma seção pode ter ainda
+ *              um codigo: { titulo, texto }, exibido numa caixa com botão
+ *              de copiar. Use String.raw para o texto, assim o \n do
+ *              código não vira quebra de linha.
  *   videos     Vídeos incorporados. Cole o link do YouTube em embedUrl;
  *              com o campo vazio, o quadro mostra "Vídeo em breve".
  *   materiais  Anexos e links. O tipo define o ícone e o comportamento:
@@ -193,7 +196,7 @@ export const modulos = [
         ],
       },
     ],
-    videos: [{ id: 'modulo-4-video', titulo: 'Passo a passo do projeto', embedUrl: '' }],
+    videos: [],
     materiais: [
       {
         titulo: 'Realizando um projeto: passo a passo (PDF)',
@@ -220,19 +223,224 @@ export const modulos = [
     titulo: 'Lendo o resultado com senso crítico',
     resumo: 'Como interpretar métricas, comparar com uma referência e desconfiar do óbvio.',
     lide:
-      'Um número alto não garante um bom modelo. Este módulo ensina a ler o resultado do seu projeto, comparar com uma referência simples e reconhecer os sinais de que algo deu errado.',
+      'Você já viu, nos módulos anteriores, como a inteligência artificial gera o código do seu projeto em segundos. Isso é poderoso, mas traz um risco silencioso: a tentação de rodar o código, ver um número bonito na tela e seguir em frente sem entender o que aconteceu. Este módulo existe para combater exatamente isso.',
     rascunho: false,
     secoes: [
       {
-        titulo: 'Neste módulo',
         paragrafos: [
-          'Acurácia, erro médio e matriz de confusão, explicados com o seu próprio resultado.',
-          'Vazamento de informação, nota perfeita e outras armadilhas comuns.',
+          'A habilidade mais valiosa que você pode levar desta parte do workshop **não é fazer a IA escrever código.** É **saber ler esse código,** entender cada decisão que ele tomou e avaliar se o resultado faz sentido. A IA é uma ferramenta excelente, mas ela não é infalível. Ela pode escolher a coluna errada, montar um modelo que parece funcionar mas aprende de forma enganosa, ou produzir um resultado alto por um motivo que não se sustenta na prática. Se você apenas confia e não verifica, vai acreditar em respostas que podem estar erradas.',
+          'Pense em um engenheiro que usa uma calculadora. A calculadora faz a conta, mas é o engenheiro que precisa saber se o resultado tem sentido físico, se a ordem de grandeza está certa, se o número cabe no problema real. Com a inteligência artificial é igual. Ela faz o trabalho pesado, mas quem precisa ter o julgamento é você. Confiar sem entender é abrir mão justamente da parte que faz de você um profissional, e não um apertador de botões.',
+          'Para mostrar o que significa entender um código de verdade, preparei dois exemplos, cada um com um projeto real do nosso workshop. Em cada documento anexado, explico o código linha por linha, o porquê de cada decisão e, principalmente, o que os resultados querem dizer. Você vai ver que ler um resultado não é só olhar o número final. É perguntar de onde ele veio, se poderia estar enganando, e o que diz sobre o problema real.',
+        ],
+        lista: [
+          'O primeiro código usa dados de um sensor de sala para resolver dois problemas ao mesmo tempo: prever a temperatura, que é um número, e prever o conforto do ambiente, que é uma categoria. É um bom exemplo de como um mesmo conjunto de dados pode alimentar uma regressão e uma classificação. O documento com a explicação completa, linha por linha, está anexado a este módulo em PDF.',
+        ],
+      },
+      {
+        paragrafos: ['Veja o código abaixo:'],
+        codigo: {
+          titulo: 'Primeiro código: temperatura e conforto de ambiente',
+          texto: String.raw`import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import mean_absolute_error, r2_score, accuracy_score, classification_report
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# --- 1. Carregar o CSV --- #
+# Carrega o arquivo CSV fornecido em um DataFrame pandas.
+df = pd.read_csv('/content/ambiente_temperatura_umidade (1).csv')
+
+print("Dados carregados com sucesso. Primeiras 5 linhas:")
+display(df.head())
+print("\nInformações gerais do DataFrame:")
+df.info()
+
+# --- 2. Preparar os Dados --- #
+# Converte a coluna 'timestamp' para o tipo datetime.
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+# Extrai características temporais que podem ser úteis para a previsão de temperatura e conforto.
+df['hora'] = df['timestamp'].dt.hour
+df['dia_da_semana'] = df['timestamp'].dt.dayofweek  # Segunda=0, Domingo=6
+df['dia_do_ano'] = df['timestamp'].dt.dayofyear
+
+# Define as colunas de características (X) e as colunas alvo (y_temp para regressão e y_conforto para classificação).
+features = ['hora', 'dia_da_semana', 'dia_do_ano', 'sala', 'umidade_pct',
+            'luminosidade_lux', 'ar_condicionado', 'pessoas_estimadas']
+X = df[features]
+y_temp = df['temperatura_c']
+y_conforto = df['conforto']
+
+# Identifica colunas categóricas e numéricas para pré-processamento.
+categorical_features = ['sala']
+numerical_features = ['hora', 'dia_da_semana', 'dia_do_ano', 'umidade_pct',
+                      'luminosidade_lux', 'ar_condicionado', 'pessoas_estimadas']
+
+# Cria transformadores para escalonar características numéricas e aplicar One-Hot Encoding em categóricas.
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numerical_features),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+    ])
+
+# --- 3. Divisão Treino e Teste (Regressão - Temperatura) --- #
+# Divide os dados para o problema de regressão em conjuntos de treino e teste.
+X_train_temp, X_test_temp, y_train_temp, y_test_temp = train_test_split(
+    X, y_temp, test_size=0.2, random_state=42)
+
+# --- 4. Treinar Modelo Simples (Regressão - Temperatura) --- #
+# Cria um pipeline que aplica o pré-processamento e depois treina um modelo de Regressão Linear.
+model_temp = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', LinearRegression())
+])
+
+# Treina o modelo de regressão.
+model_temp.fit(X_train_temp, y_train_temp)
+
+# --- 5. Imprimir Métricas (Regressão - Temperatura) --- #
+# Faz previsões no conjunto de teste.
+y_pred_temp = model_temp.predict(X_test_temp)
+
+print("\n--- Avaliação do Modelo de Regressão (Temperatura) ---")
+print(f"Erro Médio Absoluto (MAE): {mean_absolute_error(y_test_temp, y_pred_temp):.2f}")
+print(f"R-squared (R2): {r2_score(y_test_temp, y_pred_temp):.2f}")
+
+# --- 3. Divisão Treino e Teste (Classificação - Conforto) --- #
+# Para o problema de classificação, é necessário pré-processar a coluna 'conforto'.
+# Assume-se que 'conforto' pode ser uma string e precisa ser mapeada para um valor numérico.
+# Mapeamento para 'confortavel': 1, outros: 0 (ou use LabelEncoder se houver muitas classes).
+# Para simplicidade, vamos usar LabelEncoder para 'conforto' se for categórica.
+le = LabelEncoder()
+y_conforto_encoded = le.fit_transform(y_conforto)
+
+# Divide os dados para o problema de classificação em conjuntos de treino e teste.
+X_train_conforto, X_test_conforto, y_train_conforto, y_test_conforto = train_test_split(
+    X, y_conforto_encoded, test_size=0.2, random_state=42, stratify=y_conforto_encoded)  # stratify para manter proporções de classe
+
+# --- 4. Treinar Modelo Simples (Classificação - Conforto) --- #
+# Cria um pipeline que aplica o pré-processamento e depois treina um modelo de Árvore de Decisão.
+model_conforto = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', DecisionTreeClassifier(random_state=42))
+])
+
+# Treina o modelo de classificação.
+model_conforto.fit(X_train_conforto, y_train_conforto)
+
+# --- 5. Imprimir Métricas (Classificação - Conforto) --- #
+# Faz previsões no conjunto de teste.
+y_pred_conforto = model_conforto.predict(X_test_conforto)
+
+print("\n--- Avaliação do Modelo de Classificação (Conforto) ---")
+print(f"Acurácia: {accuracy_score(y_test_conforto, y_pred_conforto):.2f}")
+print("Relatório de Classificação:\n", classification_report(y_test_conforto, y_pred_conforto, target_names=le.classes_))`,
+        },
+      },
+      {
+        lista: [
+          'O segundo código prevê o consumo de energia de um prédio a partir de condições como hora, dia da semana, temperatura externa, ocupação e tarifa. É um exemplo de regressão em que a escolha das informações de entrada faz toda a diferença no resultado. A explicação detalhada, também linha por linha, está no segundo PDF anexado a este módulo.',
+        ],
+      },
+      {
+        paragrafos: ['Veja o código abaixo:'],
+        codigo: {
+          titulo: 'Segundo código: previsão de consumo de energia',
+          texto: String.raw`import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# 1. Carregar o arquivo CSV
+# O arquivo de dados é 'consumo_energia_horario.csv'
+df = pd.read_csv('consumo_energia_horario.csv')
+
+# 2. Preparar os dados
+# A coluna alvo é 'consumo_kwh'
+y = df['consumo_kwh']
+
+# As colunas de features (X) são todas as outras, exceto 'timestamp' e 'consumo_kwh'
+# 'timestamp' é descartada, pois já temos 'hora' e 'dia_semana'
+X = df.drop(columns=['timestamp', 'consumo_kwh'])
+
+# Identificar colunas categóricas para One-Hot Encoding
+categorical_features = ['dia_semana']
+
+# Identificar colunas numéricas
+numerical_features = [
+    'hora',
+    'fim_de_semana',
+    'feriado',
+    'temperatura_externa_c',
+    'umidade_externa_pct',
+    'ocupacao_predio',
+    'tarifa_ponta'
+]
+
+# Criar um pré-processador para aplicar One-Hot Encoding em colunas categóricas
+# e manter as colunas numéricas inalteradas.
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features),
+        ('num', 'passthrough', numerical_features)
+    ])
+
+# 3. Dividir os dados em conjuntos de treino e teste
+# Usamos random_state=42 para reprodutibilidade
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 4. Treinar um modelo simples do scikit-learn (Linear Regression)
+# Construímos um pipeline que primeiro pré-processa os dados e depois treina o modelo.
+model = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', LinearRegression())
+])
+
+print("Treinando o modelo...")
+model.fit(X_train, y_train)
+print("Modelo treinado com sucesso!")
+
+# Realizar previsões no conjunto de teste
+y_pred = model.predict(X_test)
+
+# 5. Imprimir as métricas adequadas ao tipo de problema (regressão)
+print("\nMétricas de Avaliação do Modelo:")
+print(f"Erro Médio Absoluto (MAE): {mean_absolute_error(y_test, y_pred):.2f}")
+print(f"Erro Quadrático Médio (MSE): {mean_squared_error(y_test, y_pred):.2f}")
+print(f"R-quadrado (R2 Score): {r2_score(y_test, y_pred):.2f}")
+
+# Explicação dos resultados
+print("\n--- Explicação dos Resultados ---")
+print("O modelo de Regressão Linear foi treinado para prever o consumo de energia (consumo_kwh) com base nas características fornecidas. O MAE indica a média dos erros absolutos das previsões, o MSE penaliza erros maiores e o R-quadrado mede a proporção da variância na variável dependente que é previsível a partir das variáveis independentes. Um R-quadrado próximo de 1 indica um bom ajuste do modelo aos dados, enquanto valores mais baixos sugerem que as features explicam menos a variabilidade do consumo.")`,
+        },
+      },
+      {
+        paragrafos: [
+          'Ao olhar para esses dois códigos, não pergunte apenas se eles rodam. Pergunte o que fazem em cada etapa, por que usam cada coluna, e se você conseguiria explicar o resultado para outra pessoa. Se a resposta for sim, você entendeu de verdade. E entender de verdade é o que esta parte do workshop quer deixar com você.',
+          'Use os PDFs anexados como guia nesse exercício de leitura crítica.',
         ],
       },
     ],
-    videos: [{ id: 'modulo-5-video', titulo: 'Como ler o resultado de um modelo', embedUrl: '' }],
+    videos: [],
     materiais: [
+      {
+        titulo: 'Primeiro código: temperatura e conforto de ambiente (PDF)',
+        descricao: 'Explicação linha por linha e leitura dos resultados: regressão da temperatura e classificação do conforto.',
+        tipo: 'arquivo',
+        url: '/materiais/primeiro-codigo-ambiente.pdf',
+      },
+      {
+        titulo: 'Segundo código: previsão de consumo de energia (PDF)',
+        descricao: 'Explicação linha por linha e leitura do MAE, do MSE e do R2 de uma regressão.',
+        tipo: 'arquivo',
+        url: '/materiais/segundo-codigo-energia.pdf',
+      },
       {
         titulo: 'Leitura do resultado na aba Meu Projeto',
         descricao: 'Envie o arquivo gerado no módulo anterior e veja o painel de leitura.',

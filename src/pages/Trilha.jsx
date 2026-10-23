@@ -5,6 +5,7 @@ import {
 import Revelar from '../components/Revelar.jsx';
 import Aviso from '../components/Aviso.jsx';
 import VideoQuadro from '../components/VideoQuadro.jsx';
+import CaixaPrompt from '../components/CaixaPrompt.jsx';
 import MedidorTrilha from '../components/MedidorTrilha.jsx';
 import {
   modulos, obrigatorios, extras, acharModulo, numeroModulo, rotuloModulo, porExtenso,
@@ -273,6 +274,9 @@ function PaginaModulo({ modulo, indice, navegar }) {
                 <ul>
                   {secao.lista.map((item) => <li key={item}><TextoMarcado texto={item} /></li>)}
                 </ul>
+              )}
+              {secao.codigo && (
+                <CaixaPrompt titulo={secao.codigo.titulo} texto={secao.codigo.texto} tipo="codigo" />
               )}
             </div>
           ))}
