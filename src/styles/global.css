@@ -2540,6 +2540,13 @@ a.cartao.jornada-cartao {
 .apresentacao h2 { margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
 .apresentacao p { margin: 0; max-width: 62ch; }
 .apresentacao .btn { flex-shrink: 0; }
+.apresentacao h3 { margin: 0 0 0.4rem; font-size: clamp(1.15rem, 2vw, 1.35rem); }
+/* Segunda faixa, do projeto real: neutra, para não competir com os slides. */
+.apresentacao-projeto {
+  margin-top: 1rem;
+  background: var(--cantos), var(--bg-alt);
+  border-left: 3px solid var(--text);
+}
 
 /* Tela de entrada ------------------------------------------------------- */
 

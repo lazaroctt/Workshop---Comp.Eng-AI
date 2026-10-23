@@ -99,6 +99,28 @@ export default function Inicio({ navegar, secao }) {
               <FileDown size={17} /> Baixar os slides (PDF, 5,6 MB)
             </a>
           </Revelar>
+
+          {/* Projeto real do laboratório */}
+          <Revelar className="apresentacao apresentacao-projeto" atraso={100}>
+            <div className="apresentacao-texto">
+              <span className="olho">Projeto real · Pesquisa LACOP</span>
+              <h3>FisioSense</h3>
+              <p>
+                Um dispositivo vestível que mede a amplitude de movimento de braços e pernas na
+                fisioterapia, com um sensor MPU-6050 e uma
+                plataforma que registra cada sessão. É um caso real dos conceitos do workshop, com
+                sensor, dados, modelo e a avaliação do resultado, aplicados fora da sala de aula.
+              </p>
+            </div>
+            <a
+              className="btn btn-secundario"
+              href="https://fisiosense.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Conhecer o FisioSense <ArrowUpRight size={17} />
+            </a>
+          </Revelar>
         </div>
       </section>
 
