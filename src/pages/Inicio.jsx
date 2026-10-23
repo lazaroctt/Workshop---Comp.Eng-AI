@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import {
-  ArrowRight, ArrowUpRight, BookOpen, Database, Lightbulb, Users, FlaskConical, Cpu,
+  ArrowRight, ArrowUpRight, BookOpen, Database, Lightbulb, Users, FlaskConical, Cpu, FileDown,
 } from 'lucide-react';
 
 import Revelar from '../components/Revelar.jsx';
@@ -76,6 +76,29 @@ export default function Inicio({ navegar, secao }) {
             </div>
           </div>
           <IlustracaoIA />
+        </div>
+      </section>
+
+      {/* Slides do dia do workshop ------------------------------------ */}
+      <section className="secao-compacta">
+        <div className="container">
+          <Revelar className="apresentacao">
+            <div className="apresentacao-texto">
+              <span className="olho">SEMENDE 26 · Apresentação do workshop</span>
+              <h2>Da Eletrônica à Inteligência Artificial</h2>
+              <p>
+                Baixe os slides para acompanhar a apresentação: os fundamentos de IA, a engenharia
+                de prompt, o passo a passo do projeto no Colab, ética e o projeto FisioSense do LACOP.
+              </p>
+            </div>
+            <a
+              className="btn btn-primario"
+              href={`${import.meta.env.BASE_URL}materiais/apresentacao-semende-26.pdf`}
+              download="Da Eletronica a Inteligencia Artificial - SEMENDE 26.pdf"
+            >
+              <FileDown size={17} /> Baixar os slides (PDF, 5,6 MB)
+            </a>
+          </Revelar>
         </div>
       </section>
 

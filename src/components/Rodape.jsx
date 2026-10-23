@@ -16,9 +16,9 @@ export default function Rodape({ abas, aoNavegar }) {
           <div>
             {/* Marcas em versão clara: os arquivos ficam em public/assets. */}
             <div className="rodape-marca">
-              <MarcaUFF altura={46} variante="branco" />
+              <MarcaUFF altura={46} variante="azul" />
               <span className="rodape-divisor" aria-hidden="true" />
-              <MarcaLacop altura={46} variante="branco" />
+              <MarcaLacop altura={46} />
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
@@ -28,12 +28,12 @@ export default function Rodape({ abas, aoNavegar }) {
                   fontFamily: 'var(--fonte-titulo)',
                   fontSize: '1.1rem',
                   fontWeight: 600,
-                  color: '#fff',
+                  color: 'var(--text)',
                 }}
               >
                 LACOP
               </strong>
-              <span style={{ fontSize: '0.86rem', color: '#a8b3c2' }}>
+              <span style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
                 Laboratório de Comunicações Ópticas
               </span>
             </div>

@@ -3,10 +3,14 @@
  * e cada coluna, a classe que o modelo previu. A diagonal guarda os acertos.
  */
 
-/** Verde de fósforo para os acertos, vermelho para as confusões. */
+/**
+ * Amarelo da paleta para os acertos, grafite translúcido para as confusões.
+ * As cores vêm dos tokens --accent-rgb e --text-rgb em global.css, e o
+ * texto da célula fica sempre em grafite, legível sobre as duas.
+ */
 const cor = (acerto, intensidade) => {
-  const base = acerto ? '94, 230, 160' : '239, 107, 115';
-  const alfa = (acerto ? 0.08 : 0.06) + intensidade * (acerto ? 0.6 : 0.42);
+  const base = acerto ? 'var(--accent-rgb)' : 'var(--text-rgb)';
+  const alfa = acerto ? 0.12 + intensidade * 0.88 : 0.03 + intensidade * 0.22;
   return `rgba(${base}, ${alfa.toFixed(3)})`;
 };
 
@@ -44,7 +48,6 @@ export default function MatrizConfusao({ classes, matriz }) {
                       className={acerto ? 'celula acerto' : 'celula erro'}
                       style={{
                         background: cor(acerto, intensidade),
-                        color: acerto && intensidade > 0.55 ? '#04110b' : undefined,
                       }}
                       title={acerto
                         ? `${valor} exemplos de ${classes[i]} foram classificados corretamente`
@@ -63,7 +66,7 @@ export default function MatrizConfusao({ classes, matriz }) {
 
       <p className="legenda">
         Leia por linha: dos exemplos que eram de uma classe, quantos o modelo colocou em cada
-        coluna. Os números em azul, na diagonal, são os acertos. Tudo em vermelho ficou fora do
+        coluna. Os números em amarelo, na diagonal, são os acertos. Tudo em cinza ficou fora do
         lugar, e a coluna em que o número aparece mostra com qual classe o modelo se confundiu.
       </p>
     </>

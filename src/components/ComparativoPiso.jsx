@@ -16,7 +16,7 @@ export default function ComparativoPiso({ modelo, piso, ganho, veredito }) {
           <span className="numero-nota">{modelo.nota}</span>
         </div>
 
-        <div className="numero-bloco">
+        <div className="numero-bloco numero-piso">
           <span className="numero-rotulo">{piso.rotulo}</span>
           <strong>{piso.valor}</strong>
           <span className="numero-nota">{piso.nota}</span>

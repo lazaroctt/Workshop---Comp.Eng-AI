@@ -63,19 +63,19 @@ export default function Abertura({ aoEntrar }) {
     >
       <div className="abertura-conteudo">
         <div className="abertura-marcas">
-          <MarcaUFF altura={62} variante="branco" />
+          <MarcaUFF altura={62} variante="azul" />
           <span className="abertura-divisor" aria-hidden="true" />
-          <MarcaLacop altura={62} variante="branco" />
+          <MarcaLacop altura={62} />
         </div>
 
         <p className="abertura-olho">Universidade Federal Fluminense · LACOP</p>
-        <h1 id="abertura-titulo">Workshop IA e Sensores</h1>
+        <h1 id="abertura-titulo">Da Eletrônica à Inteligência Artificial</h1>
         <p className="abertura-sub">Laboratório de Comunicações Ópticas</p>
 
         <svg className="abertura-sinal" viewBox="0 0 600 80" preserveAspectRatio="none" aria-hidden="true">
           <line className="eixo" x1="0" y1="40" x2="600" y2="40" />
-          <path className="traco" d={TRACO} pathLength="1" />
           <path className="pulso" d={TRACO} pathLength="1" />
+          <path className="traco" d={TRACO} pathLength="1" />
         </svg>
 
         <button ref={botao} type="button" className="btn btn-primario btn-abertura" onClick={entrar}>
