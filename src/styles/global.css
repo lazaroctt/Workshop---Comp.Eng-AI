@@ -2522,30 +2522,38 @@ a.cartao.jornada-cartao {
 ::-webkit-scrollbar-track { background: var(--bg-alt); }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-color: var(--bg-alt); }
 
-/* Faixa dos slides da apresentação, na página inicial. */
+/* Slides da apresentação e projeto real, lado a lado na página inicial. */
+.apresentacoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+.apresentacoes > .revelar { display: flex; }
 .apresentacao {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.2rem 2.4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+  width: 100%;
   padding: clamp(1.3rem, 3vw, 1.8rem) clamp(1.2rem, 3vw, 2rem);
   background: var(--cantos), var(--accent-soft);
   border: 1px solid var(--border);
   border-left: 6px solid var(--accent);
   border-radius: var(--raio-sm);
 }
-.apresentacao-texto { flex: 1 1 420px; }
 .apresentacao-texto .olho { margin-bottom: 0.5rem; }
 .apresentacao h2 { margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
-.apresentacao p { margin: 0; max-width: 62ch; }
-.apresentacao .btn { flex-shrink: 0; }
-.apresentacao h3 { margin: 0 0 0.4rem; font-size: clamp(1.15rem, 2vw, 1.35rem); }
-/* Segunda faixa, do projeto real: neutra, para não competir com os slides. */
+.apresentacao h3 { margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
+.apresentacao p { margin: 0; }
+/* Botão no pé da caixa, para as duas ficarem alinhadas. */
+.apresentacao .btn { margin-top: auto; }
+/* Caixa do projeto real: neutra, para não competir com os slides. */
 .apresentacao-projeto {
-  margin-top: 1rem;
   background: var(--cantos), var(--bg-alt);
   border-left: 3px solid var(--text);
+}
+@media (max-width: 860px) {
+  .apresentacoes { grid-template-columns: 1fr; }
 }
 
 /* Tela de entrada ------------------------------------------------------- */

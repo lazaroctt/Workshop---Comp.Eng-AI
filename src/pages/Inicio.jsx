@@ -81,7 +81,7 @@ export default function Inicio({ navegar, secao }) {
 
       {/* Slides do dia do workshop ------------------------------------ */}
       <section className="secao-compacta">
-        <div className="container">
+        <div className="container apresentacoes">
           <Revelar className="apresentacao">
             <div className="apresentacao-texto">
               <span className="olho">SEMENDE 26 · Apresentação do workshop</span>
