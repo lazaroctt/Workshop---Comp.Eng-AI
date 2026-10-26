@@ -84,19 +84,20 @@ export default function Inicio({ navegar, secao }) {
         <div className="container apresentacoes">
           <Revelar className="apresentacao">
             <div className="apresentacao-texto">
-              <span className="olho">SEMENDE 26 · Apresentação do workshop</span>
+              <span className="olho">SEMENDE 26 · Apresentação</span>
               <h2>Da Eletrônica à Inteligência Artificial</h2>
               <p>
                 Baixe os slides para acompanhar a apresentação: os fundamentos de IA, a engenharia
                 de prompt, o passo a passo do projeto no Colab, ética e o projeto FisioSense do LACOP.
               </p>
+              <span className="apresentacao-nota">Arquivo PDF, 2,9 MB</span>
             </div>
             <a
               className="btn btn-primario"
               href={`${import.meta.env.BASE_URL}materiais/apresentacao-semende-26.pdf`}
               download="Da Eletronica a Inteligencia Artificial - SEMENDE 26.pdf"
             >
-              <FileDown size={17} /> Baixar os slides (PDF, 5,6 MB)
+              <FileDown size={17} /> Baixar os slides
             </a>
           </Revelar>
 
@@ -119,6 +120,28 @@ export default function Inicio({ navegar, secao }) {
               rel="noopener noreferrer"
             >
               Conhecer o FisioSense <ArrowUpRight size={17} />
+            </a>
+          </Revelar>
+
+          {/* Ferramenta usada na parte prática */}
+          <Revelar className="apresentacao apresentacao-projeto" atraso={200}>
+            <div className="apresentacao-texto">
+              <span className="olho">Ferramenta da prática</span>
+              <h3>Google Colab</h3>
+              <p>
+                Ambiente gratuito do Google para escrever e rodar código Python direto no navegador,
+                sem instalar nada. É onde você vai treinar o seu modelo, com a ajuda do Gemini.
+                Entre com uma Conta Google; o ideal é usar o e-mail institucional do idUFF
+                (@id.uff.br).
+              </p>
+            </div>
+            <a
+              className="btn btn-secundario"
+              href="https://colab.research.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir o Google Colab <ArrowUpRight size={17} />
             </a>
           </Revelar>
         </div>

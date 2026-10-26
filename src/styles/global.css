@@ -2525,7 +2525,7 @@ a.cartao.jornada-cartao {
 /* Slides da apresentação e projeto real, lado a lado na página inicial. */
 .apresentacoes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.2rem;
 }
 .apresentacoes > .revelar { display: flex; }
@@ -2545,6 +2545,14 @@ a.cartao.jornada-cartao {
 .apresentacao h2 { margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
 .apresentacao h3 { margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 1.6rem); }
 .apresentacao p { margin: 0; }
+.apresentacao-nota {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
 /* Botão no pé da caixa, para as duas ficarem alinhadas. */
 .apresentacao .btn { margin-top: auto; }
 /* Caixa do projeto real: neutra, para não competir com os slides. */
@@ -2552,7 +2560,12 @@ a.cartao.jornada-cartao {
   background: var(--cantos), var(--bg-alt);
   border-left: 3px solid var(--text);
 }
-@media (max-width: 860px) {
+/* Em telas médias, os slides ocupam a linha toda e as outras duas dividem a de baixo. */
+@media (max-width: 1100px) {
+  .apresentacoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .apresentacoes > .revelar:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
   .apresentacoes { grid-template-columns: 1fr; }
 }
 
